@@ -1,0 +1,5 @@
+// Structs? :
+
+/*
+    Declarações das funções...
+*/
