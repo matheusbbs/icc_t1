@@ -7,7 +7,7 @@ CC = gcc
 	objects = main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o 
      
 main: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
-	$(CC) -o main main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
+	$(CC) -o ajustePol main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
 
 analise_intervalar.o: analise_intervalar.c
 	$(CC) -c $(CFLAGS) analise_intervalar.c
@@ -22,4 +22,4 @@ main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
 
 clean:
-	rm -f $(objects) main
+	rm -f $(objects) ajustePol
