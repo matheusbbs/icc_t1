@@ -5,8 +5,8 @@
 #include "metodo_minquad.h"
 
 struct Ponto{ //guarda x e y de um ponto
-        intervalo x, y;
-    }typedef ponto;
+    intervalo x, y;
+}typedef ponto;
 
 // Programa principal contendo apenas a função main():
 int main(){
@@ -19,6 +19,7 @@ int main(){
 
     ponto pontos[QntPontos]; //vetor com os pontos
     int coeficientes[grau]; //vetor com os coeficientes Ai
+    //acho que o tamanho na verdade vai ser [grau+1]
 
     for(int i = 0; i < QntPontos; i++){
         char entradaX[10], entradaY[10];

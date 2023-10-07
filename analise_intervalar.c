@@ -5,11 +5,11 @@
 #include <string.h>
 #include "analise_intervalar.h"
 
-float proximo(float numero){
+double proximo(double numero){
     return nextafter(numero, INFINITY);
 }
 
-float anterior(float numero){
+double anterior(double numero){
     return nextafter(numero, -INFINITY);
 }
 

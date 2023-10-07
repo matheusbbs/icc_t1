@@ -1,4 +1,4 @@
-CFLAGS = -Wall -std=c99 -g  # flags de compilacao
+CFLAGS = -g -c -Wall -O3 -mavx -march=native  # flags de compilacao
 LDFLAGS = -lm
 
 CC = gcc
@@ -6,7 +6,7 @@ CC = gcc
 # arquivos-objeto
 	objects = main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o 
      
-main: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
+all: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
 	$(CC) -o ajustePol main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
 
 analise_intervalar.o: analise_intervalar.c
