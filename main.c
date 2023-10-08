@@ -134,9 +134,6 @@ int main(){
     // preencher o vetor
     preencherVetor(vetorB, pontos, qntPontos, tamanho);
 
-    // para visualizar apenas
-    imprime_sistema_inter(matriz, vetorB, tamanho);
-
 //tsolSL timer
 
     //triangulariza
@@ -147,9 +144,37 @@ int main(){
 
 //tsolSL timer
 
+    //printf("\nImprimindo coeficientes encontrados:\n");
+    for(i=0; i<(grau+1); i++)
+        imprime(coeficientes[i]);
+    printf("\n");
+    //printf("\n\nImprimindo resíduos:\n");
+
     //for percorrendo vetor de pontos, calculando os residuos
-    //tudo de forma intervalar
-    imprime_residuo(matriz, vetorB, coeficientes, grau+1);
+    for(i=0; i<qntPontos; i++){
+        intervalo valor_ponto, valor_funcao, valor_residuo;
+
+        valor_ponto = pontos[i].y;
+
+        // calcula o valor da funcao naquele ponto
+        intervalo soma;
+        encontraIntervaloLongo(&soma, 0);
+        for(int j=0; j<(grau+1); j++){
+            intervalo mult1 = coeficientes[j];
+            intervalo mult2 = potencia(&pontos[i].x, j);
+
+            intervalo mult = multiplicar(&mult1, &mult2);
+            soma = somar(&soma, &mult);  // incrementa soma
+        }
+        valor_funcao = soma;
+
+        valor_residuo = subtrair(&valor_ponto, &valor_funcao);
+        imprime(valor_residuo);
+    }
+
+
+
+    //imprime_residuo(matriz, vetorB, coeficientes, grau+1);
 
     return 0;
 }
