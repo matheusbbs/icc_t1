@@ -19,7 +19,6 @@ void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){
 }
 
 void imprime_resultado(intervalo *vetorX, int tamanho){
-    printf("X       = [ ");
     int i;
     for(i=0; i<tamanho-1; i++)
         imprime(vetorX[i]);

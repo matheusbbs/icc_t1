@@ -4,177 +4,84 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/time.h>
+#include <likwid-marker.h>
 #include "analise_intervalar.h"
 #include "eliminacao_gauss.h"
 #include "metodo_minquad.h"
 
-// Atualizar essa função na eliminacao_gauss, e fica por lá
-void imprime_sistema_inter(intervalo** A, intervalo* b, int n){
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            printf("[%lf,%lf] ", A[i][j].menor, A[i][j].maior);
-        }
-        printf("= [%lf,%lf]\n", b[i].menor, b[i].maior);
-    }
-    printf("\n");
-}
-
-void preencherMatriz(intervalo** matriz, int tam, ponto* pontos, int qntPontos){
-    for(int i=0; i<tam; i++){
-        for(int j=0; j<tam; j++){
-            intervalo soma;
-            encontraIntervaloLongo(&soma, 0);
-
-            //calcula somatorio com a formula
-            for(int k=0; k<qntPontos; k++){
-                intervalo mult1, mult2, mult;
-
-                mult1 = potencia(&pontos[k].x, j);
-                mult2 = potencia(&pontos[k].x, i);
-
-                mult = multiplicar(&mult1, &mult2);
-
-                soma = somar(&soma, &mult); // incrementa soma
-            }
-            matriz[i][j] = soma;
-        }
-    }
-}
-
-// preenche a matriz de uma maneira otimizada, calculando só as diagonais
-void preencherMatrizOtim(intervalo** matriz, ponto* pontos, int qntPontos, int tam){
-    int i, j;
-    for(i=0; i<tam; i++){
-        if(i==0) j=0;     // só a primeira linha
-        else     j=tam-1; // só a última coluna
-
-        for(j; j<tam; j++){
-            intervalo soma;
-            encontraIntervaloLongo(&soma, 0);
-
-            //calcula somatorio com a formula
-            for(int k=0; k<qntPontos; k++){
-                intervalo mult1, mult2, mult;
-
-                mult1 = potencia(&pontos[k].x, j);
-                mult2 = potencia(&pontos[k].x, i);
-
-                mult = multiplicar(&mult1, &mult2);
-
-                soma = somar(&soma, &mult); // incrementa soma
-            }
-            matriz[i][j] = soma;
-
-            // Agora repete para as diagonais
-            int l=i+1; // cópia da variável linha
-            int c=j-1; // cópia da variável coluna
-            while(c>=0 && l<tam){
-                matriz[l][c] = soma;
-                l++;
-                c--;
-            }
-        }
-    }
-}
-
-void preencherVetor(intervalo* vetor, ponto* pontos, int qntPontos, int tam){
-    for(int i=0; i<tam; i++){
-        intervalo soma;
-        encontraIntervaloLongo(&soma, 0);
-
-        //calcula somatorio (termos independentes)
-        for(int k=0; k<qntPontos; k++){
-            intervalo mult1, mult2, mult;
-
-            mult1 = pontos[k].y;
-            mult2 = potencia(&pontos[k].x, i);
-
-            mult = multiplicar(&mult1, &mult2);
-
-            soma = somar(&soma, &mult); // incrementa soma
-        }
-        vetor[i] = soma;
-    }
-}
-
 // Programa principal contendo apenas a função main():
 int main(){
+
+    //estrutura pros timers
+    struct timeval tsolSL1, tsolSL2, tgeraSL1, tgeraSL2;
+
+    LIKWID_MARKER_INIT;
 
     int i, grau, qntPontos;
     scanf("%d", &grau); // grau N
     scanf("%d", &qntPontos); //quantidade K de pontos
 
+    int tamanho = grau+1; // tamanho do sistema linear
+
     ponto pontos[qntPontos]; //vetor com os pontos
     intervalo coeficientes[grau+1]; // vetor com os coeficientes Ai
-
-    int tamanho = grau+1; // tamanho do sistema linear
+    intervalo vetorB[tamanho]; // cria vetor B [grau+1]
 
     // cria matriz de intervalos [grau+1][grau+1]
     intervalo **matriz = malloc(tamanho * sizeof(intervalo*));
-
-    /* aloca cada uma das linhas da matriz A */
+    // aloca cada uma das linhas da matriz A
     for(i=0; i<tamanho; i++){
         matriz[i] = malloc(tamanho * sizeof(intervalo));
     }
 
-    // cria vetor B [grau+1]
-    intervalo vetorB[tamanho];
+    //le os pontos
+    lerPontos(pontos, qntPontos);
 
-    //leitura dos pontos
-    for(i = 0; i < qntPontos; i++){
-        char entradaX[10], entradaY[10];
-        scanf("%s %s", entradaX, entradaY);
-        encontraIntervalo(&pontos[i].x, entradaX);
-        encontraIntervalo(&pontos[i].y, entradaY);
-    }
+    //mede tempo antes de gerar valores
+    gettimeofday(&tgeraSL1, NULL);
 
-    // preenche a matriz
-    preencherMatrizOtim(matriz, pontos, qntPontos, tamanho);
+    LIKWID_MARKER_START("geraSL");
 
-    // preencher o vetor
+    //Metodo dos minimos quadrados
+    preencherMatrizOtimizado(matriz, pontos, qntPontos, tamanho);
     preencherVetor(vetorB, pontos, qntPontos, tamanho);
+    
+    LIKWID_MARKER_STOP("geraSL");
 
-//tsolSL timer
+    //depois de gerar
+    gettimeofday(&tgeraSL2, NULL);
 
-    //triangulariza
+    //antes de solucionar
+    gettimeofday(&tsolSL1, NULL);
+
+    LIKWID_MARKER_START ("solSL");
+
+    //triangulariza matriz
     eliminacaoGauss(matriz, vetorB, grau+1);
-
-    //resolve o sistema e encontra os coeficientes
+    //resolve o sistema encontrando os coeficientes
     retrossubs(matriz, vetorB, coeficientes, grau+1);
 
-//tsolSL timer
+    LIKWID_MARKER_STOP ("solSL");
 
-    //printf("\nImprimindo coeficientes encontrados:\n");
-    for(i=0; i<(grau+1); i++)
-        imprime(coeficientes[i]);
+    //depois de solucionar
+    gettimeofday(&tsolSL2, NULL);
+
+    //imprime vetor com coeficientes
+    imprime_resultado(coeficientes, tamanho);
     printf("\n");
-    //printf("\n\nImprimindo resíduos:\n");
 
-    //for percorrendo vetor de pontos, calculando os residuos
-    for(i=0; i<qntPontos; i++){
-        intervalo valor_ponto, valor_funcao, valor_residuo;
+    //imprime residuos
+    imprimeResiduoGauss(pontos, coeficientes, qntPontos, tamanho);
+    printf("\n");
 
-        valor_ponto = pontos[i].y;
+    //calcula e imprime a difenreca de tempos
+    double diferencaTSolSL = (tsolSL2.tv_sec+tsolSL2.tv_usec/1000.0)-(tsolSL1.tv_sec+tsolSL1.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTSolSL);
+    double diferencaTGeraSL = (tgeraSL2.tv_sec+tgeraSL2.tv_usec/1000.0)-(tgeraSL1.tv_sec+tgeraSL1.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTGeraSL);
 
-        // calcula o valor da funcao naquele ponto
-        intervalo soma;
-        encontraIntervaloLongo(&soma, 0);
-        for(int j=0; j<(grau+1); j++){
-            intervalo mult1 = coeficientes[j];
-            intervalo mult2 = potencia(&pontos[i].x, j);
-
-            intervalo mult = multiplicar(&mult1, &mult2);
-            soma = somar(&soma, &mult);  // incrementa soma
-        }
-        valor_funcao = soma;
-
-        valor_residuo = subtrair(&valor_ponto, &valor_funcao);
-        imprime(valor_residuo);
-    }
-
-
-
-    //imprime_residuo(matriz, vetorB, coeficientes, grau+1);
+    LIKWID_MARKER_CLOSE;
 
     return 0;
 }

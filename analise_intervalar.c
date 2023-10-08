@@ -112,23 +112,32 @@ intervalo subtrair(intervalo *inter, intervalo *inter2){
 intervalo multiplicar(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_DOWNWARD);
-    temp.menor = fmin(inter->menor, inter->maior) * fmin(inter2->menor, inter2->maior);
+    double vetorMenor[4] = {inter->menor * inter2->menor, inter->menor * inter2->maior, inter->maior * inter2->menor, inter->maior * inter2->maior};
+    temp.menor = vetorMenor[0];
+    for (int i = 1; i < 4; i++){
+        if (vetorMenor[i] < temp.menor)
+            temp.menor = vetorMenor[i];
+    }
     fesetround(FE_UPWARD);
-    temp.maior = fmax(inter->menor, inter->maior) * fmax(inter2->menor, inter2->maior);
+    double vetorMaior[4]  = {inter->menor * inter2->menor, inter->menor * inter2->maior, inter->maior * inter2->menor, inter->maior * inter2->maior};
+    temp.maior = vetorMaior[0];
+    for (int i = 1; i < 4; i++){
+        if (vetorMaior[i] > temp.maior)
+            temp.maior = vetorMaior[i];
+    }
     return temp;
 }
 
 intervalo dividir(intervalo *inter, intervalo *inter2){
-    intervalo temp;
+    intervalo temp, segundo;
     if (inter2->menor == 0 || inter2->maior == 0){ //divide por 0
         temp.menor = -INFINITY;
         temp.maior = INFINITY;
         return temp;
     }
-    fesetround(FE_DOWNWARD);
-    temp.menor = inter->menor / inter2->maior;
-    fesetround(FE_UPWARD);
-    temp.maior = inter->maior / inter2->menor;
+    segundo.menor = 1/inter2->maior;
+    segundo.maior = 1/inter2->menor;
+    temp = multiplicar(inter, &segundo);
     return temp;
 }
 
