@@ -16,6 +16,25 @@ double anterior(double numero){
     return nextafter(numero, -INFINITY);
 }
 
+void encontraIntervaloLongo(intervalo *inter, long double longo){
+    double duplo = longo; //transforma long double em double, para encontrar o intervalo correto
+    if (longo < duplo){ //numero de maquina eh maior que o proprio numero
+        inter->maior = duplo;
+        inter->menor = anterior(duplo);
+        return;
+    }
+    else if(longo == duplo){ //numero de maquina eh o proprio numero
+        inter->maior = duplo;
+        inter->menor = duplo;
+        return;
+    }
+    else{
+        inter->maior = proximo(duplo); //menor que o proprio numero
+        inter->menor = duplo;
+        return;
+    }
+}
+
 void encontraIntervalo(intervalo *inter, char entrada[]){
     long double longo;
     if (strchr(entrada, 'e') != NULL){ //eh numero cientifico
@@ -71,63 +90,69 @@ void imprime(intervalo inter){
         inter.maior > 0 ? printf(", +inf]") : printf(", -inf]");
 }
 
-void somar(intervalo *inter, intervalo *inter2){
+intervalo somar(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_UPWARD);
     temp.maior = inter->maior + inter2->maior;
     fesetround(FE_DOWNWARD);
     temp.menor = inter->menor + inter2->menor;
-    *inter2 = temp;
+    return temp;
 }
 
-void subtrair(intervalo *inter, intervalo *inter2){
+intervalo subtrair(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_DOWNWARD);
     temp.menor = inter->menor - inter2->maior;
     fesetround(FE_UPWARD);
     temp.maior = inter->maior - inter2->menor;
-    *inter2 = temp;
+    return temp;
 }
 
-void multiplicar(intervalo *inter, intervalo *inter2){
+intervalo multiplicar(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_DOWNWARD);
-    temp.menor = fminl(inter->menor, inter->maior) * fminl(inter2->menor, inter2->maior);
+    temp.menor = fmin(inter->menor, inter->maior) * fmin(inter2->menor, inter2->maior);
     fesetround(FE_UPWARD);
-    temp.maior = fmaxl(inter->menor, inter->maior) * fmaxl(inter2->menor, inter2->maior);
-    *inter2 = temp;
+    temp.maior = fmax(inter->menor, inter->maior) * fmax(inter2->menor, inter2->maior);
+    return temp;
 }
 
-void dividir(intervalo *inter, intervalo *inter2){
-    if (inter2->menor == 0 || inter2->maior == 0){ //divide por 0
-        inter2->menor = -INFINITY;
-        inter2->maior = INFINITY;
-        return;
-    }
+intervalo dividir(intervalo *inter, intervalo *inter2){
     intervalo temp;
+    if (inter2->menor == 0 || inter2->maior == 0){ //divide por 0
+        temp.menor = -INFINITY;
+        temp.maior = INFINITY;
+        return temp;
+    }
     temp.menor = inter->menor / inter2->maior;
     temp.maior = inter->maior / inter2->menor;
-    *inter2 = temp;
+    return temp;
 }
 
-void potencia(intervalo *inter, int p){
-    if (p < 0)
-        return;
+intervalo potencia(intervalo *inter, int p){
+    intervalo temp;
+    if (p < 0){
+        fprintf(stderr, "potencia p deve ser >= 0");
+        temp.menor = -1;
+        temp.maior = -1;
+        return temp;
+    }
     if (p == 0){
-        inter->menor = 1;
-        inter->maior = 1;
+        temp.menor = 1;
+        temp.maior = 1;
     }
     else if (p % 2 == 1 || (p % 2 == 0 && inter->menor >= 0)){ //p impar, ou p par com a >=0
-        inter->menor = pow(inter->menor, p);
-        inter->maior = pow(inter->maior, p);
+        temp.menor = pow(inter->menor, p);
+        temp.maior = pow(inter->maior, p);
     }
     else if(inter->maior < 0){ //p eh par, a e b < 0
-        float temp = inter->menor;
-        inter->menor = pow(inter->maior, p);
-        inter->maior = pow(temp, p);
+        double menor = inter->menor;
+        temp.menor = pow(inter->maior, p);
+        temp.maior = pow(menor, p);
     }
     else{ //p eh par, a < 0 e b >= 0
-        inter->menor = 0;
-        inter->maior = fmaxl(pow(inter->menor, p), pow(inter->maior, p));
+        temp.menor = 0;
+        temp.maior = fmax(pow(inter->menor, p), pow(inter->maior, p));
     }
+    return temp;
 }

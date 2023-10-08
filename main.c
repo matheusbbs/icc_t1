@@ -17,7 +17,7 @@ int main(){
     scanf("%d", &QntPontos);
 
     ponto pontos[QntPontos]; //vetor com os pontos
-    int coeficientes[grau+1]; //vetor com os coeficientes Ai
+    intervalo coeficientes[grau+1]; //vetor com os coeficientes Ai
     
     //criar matriz de intervalos [grau+1][grau+1]
     //criar vetor B[grau+1]

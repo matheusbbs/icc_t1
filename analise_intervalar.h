@@ -13,23 +13,26 @@ double proximo(double numero);
 double anterior(double numero);
 
 //encontra intervalo com dois numeros de maquina vizinhos
-//que contem o numero solicitado
+//que contem o numero solicitado a partier de um long double
+void encontraIntervaloLongo(intervalo *inter, long double longo);
+
+//encontra intervalo a partir de uma string
 void encontraIntervalo(intervalo *inter, char entrada[]);
 
 //imprime intervalo
 void imprime(intervalo inter);
 
 //soma dois intervalos, guarda resultado no segundo
-void somar(intervalo *inter, intervalo *inter2);
+intervalo somar(intervalo *inter, intervalo *inter2);
 
 //subtrai dois intervalos, guarda resultado no segundo
-void subtrair(intervalo *inter, intervalo *inter2);
+intervalo subtrair(intervalo *inter, intervalo *inter2);
 
 //multiplica dois intervalos, guarda resultado no segundo
-void multiplicar(intervalo *inter, intervalo *inter2);
+intervalo multiplicar(intervalo *inter, intervalo *inter2);
 
 //divide dois intervalos, guarda resultado no segundo
-void dividir(intervalo *inter, intervalo *inter2);
+intervalo dividir(intervalo *inter, intervalo *inter2);
 
 //eleva um intervalo a uma potencia >= 0
-void potencia(intervalo *inter, int p);
+intervalo potencia(intervalo *inter, int p);
