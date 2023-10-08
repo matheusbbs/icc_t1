@@ -124,7 +124,9 @@ intervalo dividir(intervalo *inter, intervalo *inter2){
         temp.maior = INFINITY;
         return temp;
     }
+    fesetround(FE_DOWNWARD);
     temp.menor = inter->menor / inter2->maior;
+    fesetround(FE_UPWARD);
     temp.maior = inter->maior / inter2->menor;
     return temp;
 }
@@ -142,16 +144,21 @@ intervalo potencia(intervalo *inter, int p){
         temp.maior = 1;
     }
     else if (p % 2 == 1 || (p % 2 == 0 && inter->menor >= 0)){ //p impar, ou p par com a >=0
+        fesetround(FE_DOWNWARD);
         temp.menor = pow(inter->menor, p);
+        fesetround(FE_UPWARD);
         temp.maior = pow(inter->maior, p);
     }
     else if(inter->maior < 0){ //p eh par, a e b < 0
         double menor = inter->menor;
+        fesetround(FE_DOWNWARD);
         temp.menor = pow(inter->maior, p);
+        fesetround(FE_UPWARD);
         temp.maior = pow(menor, p);
     }
     else{ //p eh par, a < 0 e b >= 0
         temp.menor = 0;
+        fesetround(FE_UPWARD);
         temp.maior = fmax(pow(inter->menor, p), pow(inter->maior, p));
     }
     return temp;
