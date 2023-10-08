@@ -20,7 +20,16 @@ int main(){
     intervalo coeficientes[grau+1]; //vetor com os coeficientes Ai
     
     //criar matriz de intervalos [grau+1][grau+1]
+    /* aloca um vetor de ponteiros para linhas */
+    intervalo **matriz = malloc((grau+1) * sizeof(intervalo*));
+
+    /* aloca cada uma das linhas da matriz A */
+    for(int i=0; i<(grau+1); i++){
+        matriz[i] = malloc((grau+1) * sizeof(intervalo));
+    }
+
     //criar vetor B[grau+1]
+    intervalo vetorB[grau+1];
 
 //tgeraSL timer
 
@@ -38,16 +47,16 @@ int main(){
 //tsolSL timer
 
     //triangulariza
-    //eliminacaoGauss(matriz, vetor, grau+1)
+    eliminacaoGauss(matriz, vetorB, grau+1);
 
     //resolve o sistema e encontra os coeficientes
-    //retrossubs(matriz, vetor b, coeficientes, grau+1)
+    retrossubs(matriz, vetorB, coeficientes, grau+1);
 
 //tsolSL timer
 
-    //calcularResiduos();
     //for percorrendo vetor de pontos, calculando os residuos
     //tudo de forma intervalar
+    imprime_residuo(matriz, vetorB, coeficientes, grau+1);
 
     //leitura dos pontos
     for(int i = 0; i < QntPontos; i++){

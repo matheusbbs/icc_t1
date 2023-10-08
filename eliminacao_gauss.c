@@ -5,102 +5,114 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "analise_intervalar.h"
 
-void imprime_sistema(double** A, double* b, int n){
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++)
-            printf("%.0lf ", A[i][j]);
-        printf("%.0lf\n", b[i]);
+void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){
+    for(int i=0; i<tamanho; i++){
+        for(int j=0; j<tamanho; j++)
+            imprime(matriz[i][j]);
+        imprime(vetorB[i]);
+        //     printf("%.0lf ", matriz[i][j]);
+        // printf("%.0lf\n", vetorB[i]);
     }
     printf("\n");
 }
 
-void imprime_resultado(double *x, int tam){
+void imprime_resultado(intervalo *vetorX, int tamanho){
     printf("X       = [ ");
     int i;
-    for(i=0; i<tam-1; i++)
-        printf("%.5lf       ", x[i]);
-    printf("%.5lf       ]\n", x[i]);
+    for(i=0; i<tamanho-1; i++)
+        imprime(vetorX[i]);
+    imprime(vetorX[i]);
+    //     printf("%.5lf       ", vetorX[i]);
+    // printf("%.5lf       ]\n", vetorX[i]);
 }
 
-void imprime_residuo(double **matriz, double *vetor, double *x, int tam){
+void imprime_residuo(intervalo **matriz, intervalo *vetorB, intervalo *vetorX, int tamanho){
     printf("Residuo = [ ");
     /* percorre as linhas */
-    double residuo = 0;
-    for(int i = 0; i < tam; i++){
-        for (int j = 0; j < tam; j++){ /* percorre as colunas */
-            residuo += matriz[i][j]*x[j];
+    intervalo residuo;
+    encontraIntervaloLongo(&residuo, 0); //residuo = 0
+    for(int i = 0; i < tamanho; i++){
+        for (int j = 0; j < tamanho; j++){ /* percorre as colunas */
+            intervalo temp = multiplicar(&matriz[i][j], &vetorX[j]);
+            residuo = somar(&residuo, &temp);
         }
-        residuo -= vetor[i];
-        printf("%1.5e   ", residuo);
-        residuo = 0;
+        residuo = subtrair(&residuo, &vetorB[i]);
+        imprime(residuo);
+        encontraIntervaloLongo(&residuo, 0); //residuo = 0
     }
     printf("]\n");
 }
 
-uint encontraMax(double** A, uint i, uint n){
-    double maior = fabs(A[i][i]);
+uint encontraMax(intervalo **matriz, uint i, uint tamanho){
+    double maior = fabs(matriz[i][i].maior);
     uint linha_maior = i;
 
-    for(int lin=i+1; lin<n; lin++)
-        if (fabs(A[lin][i]) > maior){
-            maior = fabs(A[lin][i]);
+    for(int lin=i+1; lin<tamanho; lin++)
+        if (fabs(matriz[lin][i].maior) > maior){
+            maior = fabs(matriz[lin][i].maior);
             linha_maior = lin;
         }
     
     return linha_maior;
 }
 
-void trocaLinhas(double** A, double* b, int i, int iPivo){
+void trocaLinhas(intervalo **matriz, intervalo *vetorB, int i, int iPivo){
 
-    void* aux = A[i];
-    A[i] = A[iPivo];
-    A[iPivo] = aux;
+    intervalo *aux = matriz[i];
+    matriz[i] = matriz[iPivo];
+    matriz[iPivo] = aux;
 
-    double auxb = b[i];
-    b[i] = b[iPivo];
-    b[iPivo] = auxb;
+    intervalo auxb = vetorB[i];
+    vetorB[i] = vetorB[iPivo];
+    vetorB[iPivo] = auxb;
 }
 
-void retrossubs(double** A, double* b, double* x, int n){
+void retrossubs(intervalo **matriz, intervalo *vetorB, intervalo *vetorX, int tamanho){
 
     /* da última linha até a primeira vai fazendo a retrossubstituição */
-    for (int i = n-1; i >= 0; --i){
-        x[i] = b[i];
+    for (int i = tamanho-1; i >= 0; --i){
+        vetorX[i] = vetorB[i];
 
         /* percorre a linha a partir do segundo coeficiente */
         /* subtraindo as multiplicações (coeficiente * variavel) */
-        for (int j = i+1; j < n; ++j)
-            x[i] -= A[i][j] * x[j];
+        for (int j = i+1; j < tamanho; ++j){
+            intervalo temp = multiplicar(&matriz[i][j], &vetorX[j]);
+            vetorX[i] = subtrair(&vetorX[i], &temp);
+        }
 
         /* divide pelo valor que ta multiplicando a variavel, descobrindo seu valor */
-        x[i] /= A[i][i];
+        vetorX[i] = dividir(&vetorX[i], &matriz[i][i]);
     }
 }
 
-void eliminacaoGauss(double** A, double* b, int n){
+void eliminacaoGauss(intervalo **matriz, intervalo *vetorB, int tamanho){
 
     /* para cada uma das colunas, vai zerar tudo que ta abaixo do pivô */
-    for(int i=0; i < n; ++i){
+    for(int i=0; i < tamanho; ++i){
 
         /* faz o pivoteamento parcial */
-        uint iPivo = encontraMax(A, i, n);
+        uint iPivo = encontraMax(matriz, i, tamanho);
         if (i != iPivo)
-            trocaLinhas(A, b, i, iPivo);
+            trocaLinhas(matriz, vetorB, i, iPivo);
         
         /* para cada linha abaixo do pivô, vai zerar o coeficiente */
-        for(int k=i+1; k < n; ++k){
+        for(int k=i+1; k < tamanho; ++k){
 
             /* calcula o multiplicador, e zera */
-            double m = A[k][i] / A[i][i];
-            A[k][i] = 0.0;
+            intervalo multiplicador = dividir(&matriz[k][i], &matriz[i][i]);
+            encontraIntervaloLongo(&matriz[k][i], 0.0); //zera
 
             /* para cada elemento restante da linha, atualiza os coeficientes */
-            for(int j=i+1; j < n; ++j)
-                A[k][j] -= A[i][j] * m;
+            for(int j=i+1; j < tamanho; ++j){
+                intervalo temp = multiplicar(&matriz[i][j], &multiplicador);
+                matriz[k][j] = subtrair(&matriz[k][j], &temp);
+            }
 
             /* atualiza o termo independente */
-            b[k] -= b[i] * m;
+            intervalo temp = multiplicar(&vetorB[i], &multiplicador);
+            vetorB[k] = subtrair(&vetorB[k], &temp);
         }
     }
 }
