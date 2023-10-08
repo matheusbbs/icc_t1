@@ -1,3 +1,6 @@
+//Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+//Nome: Matheus Branco Barreto dos Santos; GRR:20203906
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,8 +38,6 @@ void imprime_residuo(double **matriz, double *vetor, double *x, int tam){
     printf("]\n");
 }
 
-/* encontra o valor máximo (em módulo) de uma coluna i da matriz A de tamanho n */
-// retorna a linha que contém o valor máximo
 uint encontraMax(double** A, uint i, uint n){
     double maior = fabs(A[i][i]);
     uint linha_maior = i;
@@ -50,7 +51,6 @@ uint encontraMax(double** A, uint i, uint n){
     return linha_maior;
 }
 
-/* Troca as linhas i, iPivo da matriz A e do vetor B */
 void trocaLinhas(double** A, double* b, int i, int iPivo){
 
     void* aux = A[i];
@@ -62,8 +62,6 @@ void trocaLinhas(double** A, double* b, int i, int iPivo){
     b[iPivo] = auxb;
 }
 
-/* Seja um Sistema Linear de ordem n */
-/* Matriz de coeficientes A, Vetor de termos independentes B, valor das variáveis X */
 void retrossubs(double** A, double* b, double* x, int n){
 
     /* da última linha até a primeira vai fazendo a retrossubstituição */
@@ -80,8 +78,6 @@ void retrossubs(double** A, double* b, double* x, int n){
     }
 }
 
-/* Seja um Sistema Linear de ordem n */
-/* Matriz de coeficientes A, Vetor de termos independentes B */
 void eliminacaoGauss(double** A, double* b, int n){
 
     /* para cada uma das colunas, vai zerar tudo que ta abaixo do pivô */
@@ -108,5 +104,3 @@ void eliminacaoGauss(double** A, double* b, int n){
         }
     }
 }
-
-// Aqui vai o código do EP02: Funções pra fazer a eliminação de Gauss

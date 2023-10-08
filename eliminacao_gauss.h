@@ -1,3 +1,6 @@
+//Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+//Nome: Matheus Branco Barreto dos Santos; GRR:20203906
+
 // Imprime o sistema
 void imprime_sistema(double** A, double* b, int n);
 
@@ -11,11 +14,12 @@ void imprime_residuo(double **matriz, double *vetor, double *x, int tam);
 retorna a linha que contém o valor máximo */
 uint encontraMax(double** A, uint i, uint n);
 
-/* Troca as linhas i, iPivo do Sistema */
+/* Troca as linhas i, iPivo da matriz A e do vetor B */
 void trocaLinhas(double** A, double* b, int i, int iPivo);
 
-// função que calcula as variáveis X usando retrossubstituição
+/* Matriz de coeficientes A, Vetor de termos independentes B, valor das variaveis X */
 void retrossubs(double** A, double* b, double* x, int n);
 
-// Eliminação de Gauss com pivoteamento parcial
+/* Matriz de coeficientes A, Vetor de termos independentes B */
+/* Traingulariza um sistema a matriz usando eliminacao de Gauss*/
 void eliminacaoGauss(double** A, double* b, int n);

@@ -1,4 +1,5 @@
-// Struct:
+//Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+//Nome: Matheus Branco Barreto dos Santos; GRR:20203906
 
 //intervalo, contem 2 doubles vizinhos em numero de maquina
 struct intervaloStruct{

@@ -1,3 +1,6 @@
+#Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+#Nome: Matheus Branco Barreto dos Santos; GRR:20203906
+
 CFLAGS = -g -c -Wall -O3 -mavx -march=native  # flags de compilacao
 LDFLAGS = -lm
 

@@ -1,3 +1,6 @@
+//Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+//Nome: Matheus Branco Barreto dos Santos; GRR:20203906
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -128,6 +131,3 @@ void potencia(intervalo *inter, int p){
         inter->maior = fmaxl(pow(inter->menor, p), pow(inter->maior, p));
     }
 }
-
-// Aqui vai o código do EP01: Structs e coisas relacionadas com análise intervalar
-// (na verdade a struct fica no .h)
