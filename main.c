@@ -3,46 +3,139 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "analise_intervalar.h"
 #include "eliminacao_gauss.h"
 #include "metodo_minquad.h"
 
+// Atualizar essa função na eliminacao_gauss, e fica por lá
+void imprime_sistema_inter(intervalo** A, intervalo* b, int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            printf("[%lf,%lf] ", A[i][j].menor, A[i][j].maior);
+        }
+        printf("= [%lf,%lf]\n", b[i].menor, b[i].maior);
+    }
+    printf("\n");
+}
+
+void preencherMatriz(intervalo** matriz, int tam, ponto* pontos, int qntPontos){
+    for(int i=0; i<tam; i++){
+        for(int j=0; j<tam; j++){
+            intervalo soma;
+            encontraIntervaloLongo(&soma, 0);
+
+            //calcula somatorio com a formula
+            for(int k=0; k<qntPontos; k++){
+                intervalo mult1, mult2, mult;
+
+                mult1 = potencia(&pontos[k].x, j);
+                mult2 = potencia(&pontos[k].x, i);
+
+                mult = multiplicar(&mult1, &mult2);
+
+                soma = somar(&soma, &mult); // incrementa soma
+            }
+            matriz[i][j] = soma;
+        }
+    }
+}
+
+// preenche a matriz de uma maneira otimizada, calculando só as diagonais
+void preencherMatrizOtim(intervalo** matriz, ponto* pontos, int qntPontos, int tam){
+    int i, j;
+    for(i=0; i<tam; i++){
+        if(i==0) j=0;     // só a primeira linha
+        else     j=tam-1; // só a última coluna
+
+        for(j; j<tam; j++){
+            intervalo soma;
+            encontraIntervaloLongo(&soma, 0);
+
+            //calcula somatorio com a formula
+            for(int k=0; k<qntPontos; k++){
+                intervalo mult1, mult2, mult;
+
+                mult1 = potencia(&pontos[k].x, j);
+                mult2 = potencia(&pontos[k].x, i);
+
+                mult = multiplicar(&mult1, &mult2);
+
+                soma = somar(&soma, &mult); // incrementa soma
+            }
+            matriz[i][j] = soma;
+
+            // Agora repete para as diagonais
+            int l=i+1; // cópia da variável linha
+            int c=j-1; // cópia da variável coluna
+            while(c>=0 && l<tam){
+                matriz[l][c] = soma;
+                l++;
+                c--;
+            }
+        }
+    }
+}
+
+void preencherVetor(intervalo* vetor, ponto* pontos, int qntPontos, int tam){
+    for(int i=0; i<tam; i++){
+        intervalo soma;
+        encontraIntervaloLongo(&soma, 0);
+
+        //calcula somatorio (termos independentes)
+        for(int k=0; k<qntPontos; k++){
+            intervalo mult1, mult2, mult;
+
+            mult1 = pontos[k].y;
+            mult2 = potencia(&pontos[k].x, i);
+
+            mult = multiplicar(&mult1, &mult2);
+
+            soma = somar(&soma, &mult); // incrementa soma
+        }
+        vetor[i] = soma;
+    }
+}
+
 // Programa principal contendo apenas a função main():
 int main(){
 
-    int grau; //grau N
-    scanf("%d", &grau);
+    int i, grau, qntPontos;
+    scanf("%d", &grau); // grau N
+    scanf("%d", &qntPontos); //quantidade K de pontos
 
-    int QntPontos; //quantidade K de pontos
-    scanf("%d", &QntPontos);
+    ponto pontos[qntPontos]; //vetor com os pontos
+    intervalo coeficientes[grau+1]; // vetor com os coeficientes Ai
 
-    ponto pontos[QntPontos]; //vetor com os pontos
-    intervalo coeficientes[grau+1]; //vetor com os coeficientes Ai
-    
-    //criar matriz de intervalos [grau+1][grau+1]
-    /* aloca um vetor de ponteiros para linhas */
-    intervalo **matriz = malloc((grau+1) * sizeof(intervalo*));
+    int tamanho = grau+1; // tamanho do sistema linear
+
+    // cria matriz de intervalos [grau+1][grau+1]
+    intervalo **matriz = malloc(tamanho * sizeof(intervalo*));
 
     /* aloca cada uma das linhas da matriz A */
-    for(int i=0; i<(grau+1); i++){
-        matriz[i] = malloc((grau+1) * sizeof(intervalo));
+    for(i=0; i<tamanho; i++){
+        matriz[i] = malloc(tamanho * sizeof(intervalo));
     }
 
-    //criar vetor B[grau+1]
-    intervalo vetorB[grau+1];
+    // cria vetor B [grau+1]
+    intervalo vetorB[tamanho];
 
-//tgeraSL timer
+    //leitura dos pontos
+    for(i = 0; i < qntPontos; i++){
+        char entradaX[10], entradaY[10];
+        scanf("%s %s", entradaX, entradaY);
+        encontraIntervalo(&pontos[i].x, entradaX);
+        encontraIntervalo(&pontos[i].y, entradaY);
+    }
 
-    //lembrar de otimizar
-    //preencherMatriz(matriz, grau, pontos)
-    //for de for percorrendo a matriz
-        //for pro somatorio com a formula
-    
-    //preencherVetor(vetor, grau, pontos)
-    //for passando pelo vetor b
-        //for pros somatorios
+    // preenche a matriz
+    preencherMatrizOtim(matriz, pontos, qntPontos, tamanho);
 
-//tgeraSL timer
+    // preencher o vetor
+    preencherVetor(vetorB, pontos, qntPontos, tamanho);
+
+    // para visualizar apenas
+    imprime_sistema_inter(matriz, vetorB, tamanho);
 
 //tsolSL timer
 
@@ -57,14 +150,6 @@ int main(){
     //for percorrendo vetor de pontos, calculando os residuos
     //tudo de forma intervalar
     imprime_residuo(matriz, vetorB, coeficientes, grau+1);
-
-    //leitura dos pontos
-    for(int i = 0; i < QntPontos; i++){
-        char entradaX[10], entradaY[10];
-        scanf("%s %s", entradaX, entradaY);
-        encontraIntervalo(&pontos[i].x, entradaX);
-        encontraIntervalo(&pontos[i].y, entradaY);
-    }
 
     return 0;
 }
