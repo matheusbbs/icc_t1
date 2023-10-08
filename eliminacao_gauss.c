@@ -14,8 +14,8 @@ void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){
         imprime(vetorB[i]);
         //     printf("%.0lf ", matriz[i][j]);
         // printf("%.0lf\n", vetorB[i]);
+        printf("\n");
     }
-    printf("\n");
 }
 
 void imprime_resultado(intervalo *vetorX, int tamanho){

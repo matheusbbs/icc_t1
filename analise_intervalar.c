@@ -85,9 +85,10 @@ void imprime(intervalo inter){
     
     //segundo numero
     if (!isinf(inter.maior))
-        printf(", %1.8e]", inter.maior);
+        printf(",%1.8e]", inter.maior);
     else
-        inter.maior > 0 ? printf(", +inf]") : printf(", -inf]");
+        inter.maior > 0 ? printf(",+inf]") : printf(",-inf]");
+    printf("  ");
 }
 
 intervalo somar(intervalo *inter, intervalo *inter2){
