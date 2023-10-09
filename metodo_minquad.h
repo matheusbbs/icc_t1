@@ -8,10 +8,10 @@ struct Ponto{ //guarda x e y de um ponto
 //le a quantidade passada de pares de pontos do stdin, cada ponto eh um intervalo
 void lerPontos(ponto *pontos, int qntPontos);
 
-//preenche matriz com metodo dos minimos quadrados de forma nao otimizada
+//preenche matriz de tamanho tam com metodo dos minimos quadrados de forma nao otimizada a partir do vetor de pontos 
 void preencherMatriz(intervalo **matriz, int tam, ponto *pontos, int qntPontos);
 
-// preenche a matriz de maneira otimizada, calculando só as diagonais
+// preenche a matriz de tamanho tam de maneira otimizada, utilizando o vetor de pontos, calculando apenas as diagonais
 void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, int tam);
 
 //preenche o vetor B pelo metodo dos minimos quadrados

@@ -6,6 +6,7 @@
 #include <math.h>
 #include <fenv.h>
 #include <string.h>
+#include <likwid.h>
 #include "analise_intervalar.h"
 
 double proximo(double numero){

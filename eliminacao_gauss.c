@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <likwid.h>
 #include "analise_intervalar.h"
 
 void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
-#include <likwid-marker.h>
+#include <likwid.h>
 #include "analise_intervalar.h"
 #include "eliminacao_gauss.h"
 #include "metodo_minquad.h"
@@ -25,7 +25,7 @@ int main(){
     int tamanho = grau+1; // tamanho do sistema linear
 
     ponto pontos[qntPontos]; //vetor com os pontos
-    intervalo coeficientes[grau+1]; // vetor com os coeficientes Ai
+    intervalo coeficientes[tamanho]; // vetor com os coeficientes Ai
     intervalo vetorB[tamanho]; // cria vetor B [grau+1]
 
     // cria matriz de intervalos [grau+1][grau+1]
