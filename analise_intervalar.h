@@ -22,17 +22,18 @@ void encontraIntervalo(intervalo *inter, char entrada[]);
 //imprime intervalo
 void imprime(intervalo inter);
 
-//soma dois intervalos, guarda resultado no segundo
+//soma dois intervalos, retorna resultado
 intervalo somar(intervalo *inter, intervalo *inter2);
 
-//subtrai dois intervalos, guarda resultado no segundo
+//subtrai dois intervalos, retorna resultado
 intervalo subtrair(intervalo *inter, intervalo *inter2);
 
-//multiplica dois intervalos, guarda resultado no segundo
+//multiplica dois intervalos, retorna resultado
 intervalo multiplicar(intervalo *inter, intervalo *inter2);
 
-//divide dois intervalos, guarda resultado no segundo
+//divide dois intervalos, retorna resultado
 intervalo dividir(intervalo *inter, intervalo *inter2);
 
-//eleva um intervalo a uma potencia >= 0
+//eleva um intervalo a uma potencia >= 0 e retorna o resultado
+//erro: retorna [-1,-1] caso p < 0
 intervalo potencia(intervalo *inter, int p);

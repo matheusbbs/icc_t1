@@ -41,13 +41,13 @@ int main(){
     //mede tempo antes de gerar valores
     gettimeofday(&tgeraSL1, NULL);
 
-    LIKWID_MARKER_START("geraSL");
+    LIKWID_MARKER_START("GeracaoSistemaLinear");
 
     //Metodo dos minimos quadrados
     preencherMatrizOtimizado(matriz, pontos, qntPontos, tamanho);
     preencherVetor(vetorB, pontos, qntPontos, tamanho);
     
-    LIKWID_MARKER_STOP("geraSL");
+    LIKWID_MARKER_STOP("GeracaoSistemaLinear");
 
     //depois de gerar
     gettimeofday(&tgeraSL2, NULL);
@@ -55,24 +55,24 @@ int main(){
     //antes de solucionar
     gettimeofday(&tsolSL1, NULL);
 
-    LIKWID_MARKER_START ("solSL");
+    LIKWID_MARKER_START ("SolucaoSistemaLinear");
 
     //triangulariza matriz
-    eliminacaoGauss(matriz, vetorB, grau+1);
+    eliminacaoGauss(matriz, vetorB, tamanho);
     //resolve o sistema encontrando os coeficientes
-    retrossubs(matriz, vetorB, coeficientes, grau+1);
+    retrossubs(matriz, vetorB, coeficientes, tamanho);
 
-    LIKWID_MARKER_STOP ("solSL");
+    LIKWID_MARKER_STOP ("SolucaoSistemaLinear");
 
     //depois de solucionar
     gettimeofday(&tsolSL2, NULL);
 
     //imprime vetor com coeficientes
-    imprime_resultado(coeficientes, tamanho);
+    imprime_vetor(coeficientes, tamanho);
     printf("\n");
 
     //imprime residuos
-    imprimeResiduoGauss(pontos, coeficientes, qntPontos, tamanho);
+    imprimeResiduo(pontos, coeficientes, qntPontos, tamanho);
     printf("\n");
 
     //calcula e imprime a difenreca de tempos

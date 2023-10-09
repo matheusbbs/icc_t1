@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <math.h>
 #include "analise_intervalar.h"
 
@@ -12,36 +11,15 @@ void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){
         for(int j=0; j<tamanho; j++)
             imprime(matriz[i][j]);
         imprime(vetorB[i]);
-        //     printf("%.0lf ", matriz[i][j]);
-        // printf("%.0lf\n", vetorB[i]);
         printf("\n");
     }
 }
 
-void imprime_resultado(intervalo *vetorX, int tamanho){
+void imprime_vetor(intervalo *vetor, int tamanho){
     int i;
     for(i=0; i<tamanho-1; i++)
-        imprime(vetorX[i]);
-    imprime(vetorX[i]);
-    //     printf("%.5lf       ", vetorX[i]);
-    // printf("%.5lf       ]\n", vetorX[i]);
-}
-
-void imprime_residuo(intervalo **matriz, intervalo *vetorB, intervalo *vetorX, int tamanho){
-    printf("Residuo = [ ");
-    /* percorre as linhas */
-    intervalo residuo;
-    encontraIntervaloLongo(&residuo, 0); //residuo = 0
-    for(int i = 0; i < tamanho; i++){
-        for (int j = 0; j < tamanho; j++){ /* percorre as colunas */
-            intervalo temp = multiplicar(&matriz[i][j], &vetorX[j]);
-            residuo = somar(&residuo, &temp);
-        }
-        residuo = subtrair(&residuo, &vetorB[i]);
-        imprime(residuo);
-        encontraIntervaloLongo(&residuo, 0); //residuo = 0
-    }
-    printf("]\n");
+        imprime(vetor[i]);
+    imprime(vetor[i]);
 }
 
 uint encontraMax(intervalo **matriz, uint i, uint tamanho){
@@ -58,11 +36,12 @@ uint encontraMax(intervalo **matriz, uint i, uint tamanho){
 }
 
 void trocaLinhas(intervalo **matriz, intervalo *vetorB, int i, int iPivo){
-
+    //troca linhas da matriz
     intervalo *aux = matriz[i];
     matriz[i] = matriz[iPivo];
     matriz[iPivo] = aux;
 
+    //troca as posicoes do vetor B
     intervalo auxb = vetorB[i];
     vetorB[i] = vetorB[iPivo];
     vetorB[iPivo] = auxb;

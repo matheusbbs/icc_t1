@@ -5,7 +5,7 @@ struct Ponto{ //guarda x e y de um ponto
     intervalo x, y;
 }typedef ponto;
 
-//le os pontos de stdin
+//le a quantidade passada de pares de pontos do stdin, cada ponto eh um intervalo
 void lerPontos(ponto *pontos, int qntPontos);
 
 //preenche matriz com metodo dos minimos quadrados de forma nao otimizada
@@ -18,4 +18,4 @@ void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, 
 void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam);
 
 //calcula e imprime residuos entre tabela inicial e coeficientes calculados
-void imprimeResiduoGauss(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau);
+void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau);

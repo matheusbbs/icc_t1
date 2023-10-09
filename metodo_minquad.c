@@ -94,7 +94,7 @@ void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     }
 }
 
-void imprimeResiduoGauss(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau){
+void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau){
     //for percorrendo vetor de pontos, calculando os residuos
     for(int i=0; i<qntPontos; i++){
         intervalo coeficiente, pot, mult, soma, valor_residuo;
@@ -108,7 +108,7 @@ void imprimeResiduoGauss(ponto *pontos, intervalo *coeficientes, int qntPontos, 
             mult = multiplicar(&coeficiente, &pot);
             soma = somar(&soma, &mult);  // incrementa soma
         }
-        valor_residuo = subtrair(&pontos[i].y, &soma);
+        valor_residuo = subtrair(&pontos[i].y, &soma); //calcula a diferenca
         imprime(valor_residuo);
     }
 }

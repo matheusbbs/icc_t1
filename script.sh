@@ -5,11 +5,14 @@
 
 CPU=3
 
+entrada=$(cat $1)
+
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
 
 make
 
-    likwid-perfctr -C ${CPU} -g FLOPS_DP -m ./ajustePol | grep -e "[\| FLOPS"
-    likwid-perfctr -C ${CPU} -g ENERGY -m ./ajustePol #| grep -e "Energy[J]"
+    echo $entrada | likwid-perfctr -C ${CPU} -g FLOPS_DP -m ./ajustePol | grep -B1 -e "\[[0-9]\|\([0-9]\)\{8\}e\|Group\|AVX DP"
+    echo -e "\n"
+    echo $entrada | likwid-perfctr -C ${CPU} -g ENERGY -m ./ajustePol | grep -e "Group\|Energy \["
 
 echo "powersave" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor

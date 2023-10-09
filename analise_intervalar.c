@@ -112,6 +112,7 @@ intervalo subtrair(intervalo *inter, intervalo *inter2){
 intervalo multiplicar(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_DOWNWARD);
+    //calcula todas as possiveis multiplicacoes, guardando o menor e maior resultado
     double vetorMenor[4] = {inter->menor * inter2->menor, inter->menor * inter2->maior, inter->maior * inter2->menor, inter->maior * inter2->maior};
     temp.menor = vetorMenor[0];
     for (int i = 1; i < 4; i++){
@@ -135,6 +136,7 @@ intervalo dividir(intervalo *inter, intervalo *inter2){
         temp.maior = INFINITY;
         return temp;
     }
+    //multiplica pelo inverso
     segundo.menor = 1/inter2->maior;
     segundo.maior = 1/inter2->menor;
     temp = multiplicar(inter, &segundo);
