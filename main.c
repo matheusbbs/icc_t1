@@ -25,7 +25,7 @@ int main(){
     int tamanho = grau+1; // tamanho do sistema linear
 
     ponto pontos[qntPontos]; //vetor com os pontos
-    intervalo coeficientes[grau+1]; // vetor com os coeficientes Ai
+    intervalo coeficientes[tamanho]; // vetor com os coeficientes Ai
     intervalo vetorB[tamanho]; // cria vetor B [grau+1]
 
     // cria matriz de intervalos [grau+1][grau+1]
