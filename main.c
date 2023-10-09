@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
+#include <likwid.h>
 #include <likwid-marker.h>
 #include "analise_intervalar.h"
 #include "eliminacao_gauss.h"
