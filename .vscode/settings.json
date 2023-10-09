@@ -3,6 +3,9 @@
     "files.associations": {
         "string.h": "c",
         "random": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "likwid.h": "c",
+        "time.h": "c",
+        "analise_intervalar.h": "c"
     }
 }
