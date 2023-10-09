@@ -5,6 +5,7 @@
         "random": "c",
         "algorithm": "c",
         "likwid.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "analise_intervalar.h": "c"
     }
 }

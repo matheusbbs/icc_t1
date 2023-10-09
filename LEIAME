@@ -1,0 +1,120 @@
+//Nome: Felipe Augusto Dittert Noleto; GRR:20205689
+//Nome: Matheus Branco Barreto dos Santos; GRR:20203906
+
+Não foi encontrado nenhum erro, situação em que o programa não funciona ou retorna valores incorretos de acordo com os nossos testes.
+
+Descrição breve:
+
+O programa começa lendo o grau N do polinômio e a quantidade K de pontos. Em seguida aloca a matriz A e o vetor B do Sistema Linear que será gerado.
+Logo em seguida lê os K pontos de maneira intervalar. Após isso vai preencher o Sistema Linear utilizando o método dos mínimos quadrados,
+e de uma maneira otimizada (calcula apenas as diagonais repetindo os valores). Após gerar o Sistema Linear, ele será resolvido pelo método da Eliminação de Gauss
+com pivoteamento parcial. Todos esses cálculos são feitos utilizando análise intervalar e todos os números foram representados desta maneira.
+Após a resolução do Sistema, é impresso na tela de maneira intervalar os valores dos coeficientes calculados e os resíduos.
+Também é impresso o tempo que levou para gerar o Sistema Linear e o tempo que levou para solucioná-lo. 
+Esses tempos são impressos em notação científica e representados em milisegundos.
+
+
+
+Descrição geral dos módulos:
+
+analise_intervalar: Este módulo contém tudo relacionado a análise intervalar:
+    Uma struct com 2 doubles para representar os intervalos, funções aritméticas para calcular de maneira intervalar a soma, subtração, multiplicação,
+    divisão e potência, funções que vão encontrar os números de máquina anterior e próximo, função que imprime intervalo e outras funções relacionadas a
+    número de máquina e intervalos, além de duas funções que calculam o intervalo com dois numeros de máquina, que contém o número teórico.
+
+eliminacao_gauss: Este módulo contém tudo relacionado ao método da eliminação de Gauss:
+    Funções que triangularizam o sistema, que fazem a retrossubstituição, e coisas mais específicas como trocar linhas de lugar ou encontrar o maior valor de uma coluna. 
+    Também tem funções "debug" para imprimir o sistema e as variáveis calculadas.
+
+metodo_minquad: Este método contém tudo relacionado ao método dos mínimos quadrados:
+    Uma struct ponto formada por dois intervalos x e y, funções para preencher o sistema (calculando os somatórios) de maneira simples e de maneira otimizada,
+    funções para imprimir resíduo e fazer a leitura dos pontos.
+
+main.c: Programa principal contendo apenas a função main()
+
+Makefile:   Contém todas as informações necessárias do LIKWID (e está configurado com o endereço do dinf) e possui as regras all e clean. 
+            Faz a junção de todos os módulos e gera um executável de nome ajustePol.
+
+
+
+Lista de todas as funções criadas:
+
+=================================
+Módulo das Análises Intervalares:
+=================================
+
+//retorna numero de maquina seguinte ao numero passado
+double proximo(double numero);
+
+//retorna numero de maquina anterior ao numero passado
+double anterior(double numero);
+
+//encontra intervalo com dois numeros de maquina vizinhos
+//que contem o numero solicitado a partier de um long double
+void encontraIntervaloLongo(intervalo *inter, long double longo);
+
+//encontra intervalo a partir de uma string
+void encontraIntervalo(intervalo *inter, char entrada[]);
+
+//imprime intervalo
+void imprime(intervalo inter);
+
+//soma dois intervalos, retorna resultado
+intervalo somar(intervalo *inter, intervalo *inter2);
+
+//subtrai dois intervalos, retorna resultado
+intervalo subtrair(intervalo *inter, intervalo *inter2);
+
+//multiplica dois intervalos, retorna resultado
+intervalo multiplicar(intervalo *inter, intervalo *inter2);
+
+//divide dois intervalos, retorna resultado
+intervalo dividir(intervalo *inter, intervalo *inter2);
+
+//eleva um intervalo a uma potencia >= 0 e retorna o resultado
+//erro: retorna [-1,-1] caso p < 0
+intervalo potencia(intervalo *inter, int p);
+
+
+==============================
+Módulo da Eliminação de Gauss:
+==============================
+
+// recebe matriz de intervalos, vetor B e seus tamanhos e os imprime
+void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho);
+
+// recebe vetor de intervalos e seu tamanho e os imprime
+void imprime_vetor(intervalo *vetorX, int tamanho);
+
+/* encontra o valor máximo (em módulo) de uma coluna i da matriz
+retorna a linha que contém o valor máximo */
+uint encontraMax(intervalo **matriz, uint i, uint tamanho);
+
+// Troca as linhas i, iPivo da matriz e do vetor B realizando o pivoteamento
+void trocaLinhas(intervalo **matriz, intervalo *vetorB, int i, int iPivo);
+
+// realiza a retrosubstituicao a partir de um sistema guardando o resultado em vetorX
+void retrossubs(intervalo **matriz, intervalo *vetorB, intervalo *vetorX, int tamanho);
+
+// Triangulariza um sistema de equacao a partir do metodo de Gauss
+void eliminacaoGauss(intervalo **matriz, intervalo *vetorB, int tamanho);
+
+
+=======================================
+Módulo do Método dos Mínimos Quadrados:
+=======================================
+
+//le a quantidade passada de pares de pontos do stdin, cada ponto eh um intervalo
+void lerPontos(ponto *pontos, int qntPontos);
+
+//preenche matriz de tamanho tam com metodo dos minimos quadrados de forma nao otimizada a partir do vetor de pontos 
+void preencherMatriz(intervalo **matriz, int tam, ponto *pontos, int qntPontos);
+
+// preenche a matriz de tamanho tam de maneira otimizada, utilizando o vetor de pontos, calculando apenas as diagonais
+void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, int tam);
+
+//preenche o vetor B a partir do vetor de pontos pelo metodo dos minimos quadrados
+void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam);
+
+//calcula e imprime residuos entre a tabela inicial e o vetor de coeficientes calculados
+void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau);
