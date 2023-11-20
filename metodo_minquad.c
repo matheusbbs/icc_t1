@@ -7,6 +7,8 @@
 #include "analise_intervalar.h"
 #include "metodo_minquad.h"
 
+//#include "eliminacao_gauss.h" // debug, para imprimir o sistema
+
 void lerPontos(ponto *pontos, int qntPontos){
     for(int i = 0; i < qntPontos; i++){
         char entradaX[10], entradaY[10];
@@ -72,6 +74,42 @@ void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, 
                 c--;
             }
         }
+    }
+}
+
+void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
+    int i, j;
+    for(i = 0; i < tam; i++){
+        if(i == 0)  // só a primeira linha
+            j=0;     
+        else
+            j=tam-1; // só a última coluna
+
+        if(i>0){ // copia todos os elementos (menos o último) da linha anterior
+            for(int c=0; c<=tam-2; c++)
+                matriz[i][c] = matriz[i-1][c+1];
+        }
+
+        for(; j < tam; j++){
+            intervalo soma;
+            encontraIntervaloLongo(&soma, 0);
+
+            //calcula somatorio com a formula
+            for(int k = 0; k < qntPontos; k++){
+                intervalo mult1, mult2, mult;
+
+                mult1 = potencia(&pontos[k].x, j);
+                mult2 = potencia(&pontos[k].x, i);
+
+                mult = multiplicar(&mult1, &mult2);
+
+                soma = somar(&soma, &mult); // incrementa soma
+            }
+            matriz[i][j] = soma;
+        }
+
+        //printf("após calcular linha %d:\n", i);
+        //imprime_sistema(matriz, pontos, tam);
     }
 }
 

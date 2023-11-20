@@ -14,6 +14,9 @@ void preencherMatriz(intervalo **matriz, int tam, ponto *pontos, int qntPontos);
 // preenche a matriz de tamanho tam de maneira otimizada, utilizando o vetor de pontos, calculando apenas as diagonais
 void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, int tam);
 
+// preenche a matriz de tamanho tam de maneira BEM otimizada (v2)
+void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos, int tam);
+
 //preenche o vetor B pelo metodo dos minimos quadrados
 void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam);
 
