@@ -39,7 +39,7 @@ void encontraIntervaloLongo(intervalo *inter, long double longo){
 void encontraIntervalo(intervalo *inter, char entrada[]){
     long double longo;
     if (strchr(entrada, 'e') != NULL){ //eh numero cientifico
-        char final[5]; //expoente
+        char final[20]; //expoente
         char positivo = 1;
         if (entrada[0] == '-') //eh negativo?
             positivo = 0;

@@ -20,5 +20,5 @@ void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos,
 //preenche o vetor B pelo metodo dos minimos quadrados
 void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam);
 
-//calcula e imprime residuos entre tabela inicial e coeficientes calculados
-void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau);
+//calcula residuos entre tabela inicial e coeficientes calculados
+void calculaResiduo(ponto *pontos, intervalo *coeficientes, intervalo *residuos, int qntPontos, int grau);

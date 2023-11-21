@@ -10,8 +10,9 @@ CC = gcc
 # arquivos-objeto
 	objects = main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o 
      
-all: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
+all: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o gera_entrada.c
 	$(CC) -o ajustePol main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
+	$(CC) gera_entrada.c -o gera_entrada
 
 analise_intervalar.o: analise_intervalar.c
 	$(CC) -c $(CFLAGS) analise_intervalar.c
