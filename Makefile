@@ -8,11 +8,10 @@ LDFLAGS = -lm -L${LIKWID_HOME}/lib -llikwid
 CC = gcc
 
 # arquivos-objeto
-	objects = main.o mainV2.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o 
+	objects = main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o 
      
-all: main.o mainV2.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
+all: main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o
 	$(CC) -o ajustePol main.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
-	$(CC) -o ajustePolV2 mainV2.o analise_intervalar.o  metodo_minquad.o eliminacao_gauss.o $(LDFLAGS)
 
 analise_intervalar.o: analise_intervalar.c
 	$(CC) -c $(CFLAGS) analise_intervalar.c
@@ -23,11 +22,8 @@ metodo_minquad.o: metodo_minquad.c
 eliminacao_gauss.o: eliminacao_gauss.c
 	$(CC) -c $(CFLAGS) eliminacao_gauss.c
 
-mainV2.o: mainV2.c
-	$(CC) -c $(CFLAGS) mainV2.c
-
 main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
 
 clean:
-	rm -f $(objects) ajustePol ajustePolV2
+	rm -f $(objects) ajustePol
