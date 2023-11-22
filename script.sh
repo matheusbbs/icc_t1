@@ -5,6 +5,25 @@
 
 CPU=3
 
+mkdir tabelas #cria pasta tabelas
+
+# Gera arquivos .csv com saida do likwid
+for size in "${tamanhos[@]}"; do
+    for grp in "${grupos[@]}"; do
+        ./perfctr.sh $CPU "$grp" "$size"
+    done
+done
+
+for size in "${tamanhos[@]}"; do
+    awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
+done
+
+# rm *.csv
+
+# for size in "${tamanhos[@]}"; do
+#     ./ajustePol "$size" > saida.txt
+#     awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
+# done
 entrada=$(cat $1)
 
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
