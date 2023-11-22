@@ -45,18 +45,9 @@ int main(){
 
     //Metodo dos minimos quadrados
     preencherMatrizOtimizado(matriz, pontos, qntPontos, tamanho);
-    //preencherMatrizOtimizado2(matriz, pontos, qntPontos, tamanho);
     preencherVetor(vetorB, pontos, qntPontos, tamanho);
-
-    //debug
-    imprime_sistema(matriz, vetorB, tamanho);
     
     LIKWID_MARKER_STOP("GeracaoSistemaLinear");
-
-//return 4;
-
-
-
 
     //depois de gerar
     gettimeofday(&tgeraSL2, NULL);
