@@ -11,7 +11,7 @@
 
 void lerPontos(ponto *pontos, int qntPontos){
     for(int i = 0; i < qntPontos; i++){
-        char entradaX[10], entradaY[10];
+        char entradaX[100], entradaY[100];
         scanf("%s %s", entradaX, entradaY);
         encontraIntervalo(&pontos[i].x, entradaX);
         encontraIntervalo(&pontos[i].y, entradaY);
@@ -106,6 +106,44 @@ void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos,
                 soma = somar(&soma, &mult); // incrementa soma
             }
             matriz[i][j] = soma;
+        }
+
+        //printf("após calcular linha %d:\n", i);
+        //imprime_sistema(matriz, pontos, tam);
+    }
+}
+
+void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPontos, int tam){
+    int i, j;
+    for(i = 0; i < tam; i++){
+        if(i == 0)  // só a primeira linha
+            j=0;     
+        else
+            j=tam-1; // só a última coluna
+
+        if(i>0){ // copia todos os elementos (menos o último) da linha anterior
+            for(int c=0; c<=tam-2; c++)
+                matriz[i *tam+ c] = matriz[(i-1) *tam+ (c+1)];
+                //matriz[i][c] = matriz[i-1][c+1];
+        }
+
+        for(; j < tam; j++){
+            intervalo soma;
+            encontraIntervaloLongo(&soma, 0);
+
+            //calcula somatorio com a formula
+            for(int k = 0; k < qntPontos; k++){
+                intervalo mult1, mult2, mult;
+
+                mult1 = potencia(&pontos[k].x, j);
+                mult2 = potencia(&pontos[k].x, i);
+
+                mult = multiplicar(&mult1, &mult2);
+
+                soma = somar(&soma, &mult); // incrementa soma
+            }
+            matriz[i *tam+ j] = soma;
+            //matriz[i][j] = soma;
         }
 
         //printf("após calcular linha %d:\n", i);
