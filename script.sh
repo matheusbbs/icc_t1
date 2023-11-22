@@ -3,16 +3,23 @@
 
 #!/bin/bash
 
+tamanhos=(64 128) # 200 256 512 600 800 1024 2000 3000 4098 6000 7000 10000 50000 100000 1000000 1000000 10000000)
+
+grupos=("FLOPS_DP") # "L3" "L3CACHE" )
+
 CPU=3
 
-entrada=$(cat $1)
+mkdir tabelas
 
-echo "performance" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
+for size in "${tamanhos[@]}"; do
+    for grp in "${grupos[@]}"; do
+        ./perfctr.sh $CPU "$grp" "$size"
+    done
+done
 
-make
+# rm *.csv
 
-    echo $entrada | likwid-perfctr -C ${CPU} -g FLOPS_DP -m ./ajustePol | grep -B1 -e "\[[0-9]\|\([0-9]\)\{8\}e\|Group\|AVX DP"
-    echo -e "\n"
-    echo $entrada | likwid-perfctr -C ${CPU} -g ENERGY -m ./ajustePol | grep -e "Group\|Energy \["
-
-echo "powersave" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
+# for size in "${tamanhos[@]}"; do
+#     ./ajustePol "$size" > saida.txt
+#     awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
+# done
