@@ -14,7 +14,8 @@
 int main(){
 
     //estrutura pros timers
-    struct timeval tsolSL1, tsolSL2, tgeraSL1, tgeraSL2;
+    struct timeval tsolSL1, tsolSL2, tgeraSL1, tgeraSL2, tresiSL1, tresiSL2,
+                    tsolSL1otim, tsolSL2otim, tgeraSL1otim, tgeraSL2otim, tresiSL1otim, tresiSL2otim;
 
     LIKWID_MARKER_INIT;
 
@@ -25,6 +26,7 @@ int main(){
     int tamanho = grau+1; // tamanho do sistema linear
 
     ponto pontos[qntPontos]; //vetor com os pontos
+    intervalo residuos[qntPontos]; // vetor com os residuosm
     intervalo coeficientes[tamanho]; // vetor com os coeficientes Ai
     intervalo vetorB[tamanho]; // cria vetor B [grau+1]
 
@@ -38,24 +40,22 @@ int main(){
     //le os pontos
     lerPontos(pontos, qntPontos);
 
-<<<<<<< Updated upstream
-=======
 
 
     //printf("Não otimizado:\n\n");
     //INICIO CALCULOS NAO OTIMIZADOS ----------
 
 
->>>>>>> Stashed changes
     //mede tempo antes de gerar valores
     gettimeofday(&tgeraSL1, NULL);
 
     LIKWID_MARKER_START("GeracaoSistemaLinear");
 
     //Metodo dos minimos quadrados
+    printf("\n\nteste\n\n");
     preencherMatrizOtimizado(matriz, pontos, qntPontos, tamanho);
     preencherVetor(vetorB, pontos, qntPontos, tamanho);
-    
+
     LIKWID_MARKER_STOP("GeracaoSistemaLinear");
 
     //depois de gerar
@@ -94,8 +94,6 @@ int main(){
     //depois de solucionar
     gettimeofday(&tsolSL2, NULL);
 
-<<<<<<< Updated upstream
-=======
     //antes de calcular residuo
     gettimeofday(&tresiSL1, NULL);
 
@@ -206,24 +204,30 @@ int main(){
     //imprime_sistemaCont(matrizCont, vetorB2, tamanho);
     //printf("\n\n");
 
->>>>>>> Stashed changes
     //imprime vetor com coeficientes
     imprime_vetor(coeficientes2, tamanho);
     printf("\n");
 
     //imprime residuos
-<<<<<<< Updated upstream
     imprimeResiduo(pontos, coeficientes, qntPontos, tamanho);
-=======
-    imprime_vetor(residuos2, qntPontos);
->>>>>>> Stashed changes
     printf("\n");
 
-    //calcula e imprime a difenreca de tempos
+    //calcula e imprime a difenreca de tempos nao otimizados
     double diferencaTSolSL = (tsolSL2.tv_sec+tsolSL2.tv_usec/1000.0)-(tsolSL1.tv_sec+tsolSL1.tv_usec/1000.0);
     printf("%1.8e\n", diferencaTSolSL);
     double diferencaTGeraSL = (tgeraSL2.tv_sec+tgeraSL2.tv_usec/1000.0)-(tgeraSL1.tv_sec+tgeraSL1.tv_usec/1000.0);
     printf("%1.8e\n", diferencaTGeraSL);
+    double diferencaTResiSL = (tresiSL2.tv_sec+tresiSL2.tv_usec/1000.0)-(tresiSL1.tv_sec+tresiSL1.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTResiSL);
+
+    //calcula e imprime a difenreca de tempos otimizados
+    double diferencaTSolSLOtim = (tsolSL2otim.tv_sec+tsolSL2otim.tv_usec/1000.0)-(tsolSL1otim.tv_sec+tsolSL1otim.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTSolSLOtim);
+    double diferencaTGeraSLOtim = (tgeraSL2otim.tv_sec+tgeraSL2otim.tv_usec/1000.0)-(tgeraSL1otim.tv_sec+tgeraSL1otim.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTGeraSLOtim);
+    double diferencaTResiSLOtim = (tresiSL2otim.tv_sec+tresiSL2otim.tv_usec/1000.0)-(tresiSL1otim.tv_sec+tresiSL1otim.tv_usec/1000.0);
+    printf("%1.8e\n", diferencaTResiSLOtim);
+
 
     LIKWID_MARKER_CLOSE;
 

@@ -156,7 +156,7 @@ void eliminacaoGauss(intervalo **matriz, intervalo *vetorB, int tamanho){
         uint iPivo = encontraMax(matriz, i, tamanho);
         if (i != iPivo){
             //printf("Trocando linhas %d e %d\n", i, iPivo);
-            trocaLinhas(matriz, vetorB, i, iPivo);
+            //trocaLinhas(matriz, vetorB, i, iPivo);
 
 //printf("\n\nImprimindo a matriz MATRIZ (depois da troca):\n");
 //for(int a=0; a<tamanho; a++)

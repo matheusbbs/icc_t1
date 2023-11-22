@@ -7,6 +7,8 @@
 #include "analise_intervalar.h"
 #include "metodo_minquad.h"
 
+//#include "eliminacao_gauss.h" // debug, para imprimir o sistema
+
 void lerPontos(ponto *pontos, int qntPontos){
     for(int i = 0; i < qntPontos; i++){
         char entradaX[100], entradaY[100];
@@ -75,8 +77,6 @@ void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, 
     }
 }
 
-<<<<<<< Updated upstream
-=======
 void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
@@ -151,7 +151,6 @@ void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPont
     }
 }
 
->>>>>>> Stashed changes
 void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     for(int i=0; i<tam; i++){
         intervalo soma;
@@ -172,10 +171,10 @@ void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     }
 }
 
-void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int grau){
+void calculaResiduo(ponto *pontos, intervalo *coeficientes, intervalo *residuos, int qntPontos, int grau){
     //for percorrendo vetor de pontos, calculando os residuos
     for(int i=0; i<qntPontos; i++){
-        intervalo coeficiente, pot, mult, soma, valor_residuo;
+        intervalo coeficiente, pot, mult, soma;
 
         // calcula o valor da funcao naquele ponto
         encontraIntervaloLongo(&soma, 0); //soma = 0
@@ -186,7 +185,6 @@ void imprimeResiduo(ponto *pontos, intervalo *coeficientes, int qntPontos, int g
             mult = multiplicar(&coeficiente, &pot);
             soma = somar(&soma, &mult);  // incrementa soma
         }
-        valor_residuo = subtrair(&pontos[i].y, &soma); //calcula a diferenca
-        imprime(valor_residuo);
+        residuos[i] = subtrair(&pontos[i].y, &soma); //calcula a diferenca
     }
 }
