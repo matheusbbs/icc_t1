@@ -27,4 +27,4 @@ main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
 
 clean:
-	rm -f $(objects) ajustePol
+	rm -f $(objects) ajustePol gera_entrada

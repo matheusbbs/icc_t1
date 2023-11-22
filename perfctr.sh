@@ -18,8 +18,7 @@ LIKWID_CMD="likwid-perfctr -C "$cpu" -g "$grupo" -m -O --output ./tabelas/"$grup
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy"$cpu"/scaling_governor
 
 echo "testando "$grupo" para o tamanho "$tamanho""
-./gera_entrada "$tamanho" | ${LIKWID_CMD} ./ajustePol > saida.txt #executa likwid e salva csv em ./tabelas
-cat saida.txt >> ./tabelas/"$grupo""$tamanho".csv
+./gera_entrada "$tamanho" | ${LIKWID_CMD} ./ajustePol > /dev/null #executa likwid e salva csv em ./tabelas
 
 echo "powersave" > /sys/devices/system/cpu/cpufreq/policy"$cpu"/scaling_governor
 

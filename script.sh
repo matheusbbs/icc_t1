@@ -11,34 +11,16 @@ CPU=3
 
 mkdir tabelas #cria pasta tabelas
 
-# Gera arquivos .csv com saida do likwid
+# Gera arquivos .csv com saida do likwid para todos os grupos e tamanhos
 for size in "${tamanhos[@]}"; do
     for grp in "${grupos[@]}"; do
         ./perfctr.sh $CPU "$grp" "$size"
     done
 done
 
-for size in "${tamanhos[@]}"; do
-    awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
-done
-
-# rm *.csv
-
-# for size in "${tamanhos[@]}"; do
-#     ./ajustePol "$size" > saida.txt
-#     awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
-# done
-entrada=$(cat $1)
+rm *.csv
 
 for size in "${tamanhos[@]}"; do
-    for grp in "${grupos[@]}"; do
-        ./perfctr.sh $CPU "$grp" "$size"
-    done
+    tempo=$(./gera_entrada "$size" | ./ajustePol)
+    echo "$tempo" | awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' >> TEMPOS.csv
 done
-
-# rm *.csv
-
-# for size in "${tamanhos[@]}"; do
-#     ./ajustePol "$size" > saida.txt
-#     awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' ./saida.txt >> TEMPOS.csv
-# done
