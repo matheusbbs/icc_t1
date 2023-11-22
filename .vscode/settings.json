@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "string.h": "c",
@@ -7,5 +8,9 @@
         "likwid.h": "c",
         "time.h": "c",
         "analise_intervalar.h": "c"
+=======
+    "files.associations": {
+        "time.h": "c"
+>>>>>>> Stashed changes
     }
 }

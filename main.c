@@ -38,6 +38,15 @@ int main(){
     //le os pontos
     lerPontos(pontos, qntPontos);
 
+<<<<<<< Updated upstream
+=======
+
+
+    //printf("Não otimizado:\n\n");
+    //INICIO CALCULOS NAO OTIMIZADOS ----------
+
+
+>>>>>>> Stashed changes
     //mede tempo antes de gerar valores
     gettimeofday(&tgeraSL1, NULL);
 
@@ -57,22 +66,157 @@ int main(){
 
     LIKWID_MARKER_START ("SolucaoSistemaLinear");
 
+
+
+
+//debug
+//printf("Imprimindo vetorB:\n");
+//imprime_vetor(vetorB, tamanho);
+
     //triangulariza matriz
     eliminacaoGauss(matriz, vetorB, tamanho);
+
+//debug
+//printf("\nImprimindo vetorB após gauss:\n");
+//imprime_vetor(vetorB, tamanho);
+//printf("\n");
+
     //resolve o sistema encontrando os coeficientes
     retrossubs(matriz, vetorB, coeficientes, tamanho);
+
+
+
+
+
 
     LIKWID_MARKER_STOP ("SolucaoSistemaLinear");
 
     //depois de solucionar
     gettimeofday(&tsolSL2, NULL);
 
+<<<<<<< Updated upstream
+=======
+    //antes de calcular residuo
+    gettimeofday(&tresiSL1, NULL);
+
+    LIKWID_MARKER_START ("CalculoResiduos");
+
+    //calucula residuos
+    calculaResiduo(pontos, coeficientes, residuos, qntPontos, tamanho);
+
+    LIKWID_MARKER_STOP ("CalculoResiduos");
+
+    //depois de calcular residuo
+    gettimeofday(&tresiSL2, NULL);
+
+    //FIM CALCULOS NAO OTIMIZADOS ----------
+
+
+    
+
+    //DEBUG
+    //imprime_sistema(matriz, vetorB, tamanho);
+    //printf("\n\n");
     //imprime vetor com coeficientes
-    imprime_vetor(coeficientes, tamanho);
+    //imprime_vetor(coeficientes, tamanho);
+    //printf("\n");
+
+    //imprime residuos
+    //imprime_vetor(residuos, qntPontos);
+    //printf("\n");
+
+
+
+
+    //printf("\n\nOtimizado:\n\n");
+
+    //INICIO CALCULOS OTIMIZADOS -----------
+    // cria matriz contínua de intervalos [grau+1][grau+1]
+    intervalo *matrizCont = (intervalo *)malloc (tamanho * tamanho * sizeof(intervalo));
+    intervalo vetorB2[tamanho]; // cria vetor B [grau+1]
+    intervalo coeficientes2[tamanho]; // vetor com os coeficientes Ai
+    intervalo residuos2[qntPontos]; // vetor com os residuosm
+    //mede tempo antes de gerar valores
+    gettimeofday(&tgeraSL1otim, NULL);
+
+    LIKWID_MARKER_START("GeracaoSistemaLinearOtim");
+
+    //Metodo dos minimos quadrados
+    preencherMatrizOtimizado2Cont(matrizCont, pontos, qntPontos, tamanho);
+    preencherVetor(vetorB2, pontos, qntPontos, tamanho);
+
+    LIKWID_MARKER_STOP("GeracaoSistemaLinearOtim");
+
+    //depois de gerar
+    gettimeofday(&tgeraSL2otim, NULL);
+
+
+    //antes de solucionar
+    gettimeofday(&tsolSL1otim, NULL);
+
+    LIKWID_MARKER_START ("SolucaoSistemaLinearOtim");
+
+
+
+
+//debug
+//printf("Imprimindo vetorB2:\n");
+//imprime_vetor(vetorB2, tamanho);
+
+    //triangulariza matriz
+    eliminacaoGaussCont(matrizCont, vetorB2, tamanho);
+
+//debug
+//printf("\nImprimindo vetorB2 após gauss:\n");
+//imprime_vetor(vetorB2, tamanho);
+//printf("\n");
+
+    //resolve o sistema encontrando os coeficientes
+    retrossubsCont(matrizCont, vetorB2, coeficientes2, tamanho);
+
+
+
+
+
+    //debug
+    //imprime_vetor(coeficientes, tamanho);
+
+    LIKWID_MARKER_STOP ("SolucaoSistemaLinearOtim");
+
+    //depois de solucionar
+    gettimeofday(&tsolSL2otim, NULL);
+
+    //antes de calcular residuo
+    gettimeofday(&tresiSL1otim, NULL);
+
+    LIKWID_MARKER_START ("CalculoResiduosOtim");
+
+    //calucula residuos
+    calculaResiduo(pontos, coeficientes2, residuos2, qntPontos, tamanho);
+
+    LIKWID_MARKER_STOP ("CalculoResiduosOtim");
+
+    //depois de calcular residuo
+    gettimeofday(&tresiSL2otim, NULL);
+
+
+    //FIM CALCULOS OTIMIZADOS -----------
+
+    //DEBUG
+    //imprime_sistemaCont(matrizCont, vetorB2, tamanho);
+    //printf("\n\n");
+
+>>>>>>> Stashed changes
+    //imprime vetor com coeficientes
+    imprime_vetor(coeficientes2, tamanho);
     printf("\n");
 
     //imprime residuos
+<<<<<<< Updated upstream
     imprimeResiduo(pontos, coeficientes, qntPontos, tamanho);
+=======
+    imprime_vetor(residuos2, qntPontos);
+>>>>>>> Stashed changes
     printf("\n");
 
     //calcula e imprime a difenreca de tempos
