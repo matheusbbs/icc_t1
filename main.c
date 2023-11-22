@@ -41,8 +41,6 @@ int main(){
     lerPontos(pontos, qntPontos);
 
 
-
-    //printf("Não otimizado:\n\n");
     //INICIO CALCULOS NAO OTIMIZADOS ----------
 
 
@@ -61,33 +59,18 @@ int main(){
     //depois de gerar
     gettimeofday(&tgeraSL2, NULL);
 
+    //debug
+    // imprime_sistema(matriz, vetorB, tamanho);
+
     //antes de solucionar
     gettimeofday(&tsolSL1, NULL);
 
     LIKWID_MARKER_START ("SolucaoSistemaLinear");
 
-
-
-
-//debug
-//printf("Imprimindo vetorB:\n");
-//imprime_vetor(vetorB, tamanho);
-
     //triangulariza matriz
     eliminacaoGauss(matriz, vetorB, tamanho);
-
-//debug
-//printf("\nImprimindo vetorB após gauss:\n");
-//imprime_vetor(vetorB, tamanho);
-//printf("\n");
-
     //resolve o sistema encontrando os coeficientes
     retrossubs(matriz, vetorB, coeficientes, tamanho);
-
-
-
-
-
 
     LIKWID_MARKER_STOP ("SolucaoSistemaLinear");
 
@@ -108,76 +91,34 @@ int main(){
     gettimeofday(&tresiSL2, NULL);
 
     //FIM CALCULOS NAO OTIMIZADOS ----------
-
-
-    
-
-    //DEBUG
-    //imprime_sistema(matriz, vetorB, tamanho);
-    //printf("\n\n");
-    //imprime vetor com coeficientes
-    //imprime_vetor(coeficientes, tamanho);
-    //printf("\n");
-
-    //imprime residuos
-    //imprime_vetor(residuos, qntPontos);
-    //printf("\n");
-
-
-
-
-    //printf("\n\nOtimizado:\n\n");
-
     //INICIO CALCULOS OTIMIZADOS -----------
-    // cria matriz contínua de intervalos [grau+1][grau+1]
-    intervalo *matrizCont = (intervalo *)malloc (tamanho * tamanho * sizeof(intervalo));
-    intervalo vetorB2[tamanho]; // cria vetor B [grau+1]
-    intervalo coeficientes2[tamanho]; // vetor com os coeficientes Ai
-    intervalo residuos2[qntPontos]; // vetor com os residuosm
+
     //mede tempo antes de gerar valores
     gettimeofday(&tgeraSL1otim, NULL);
 
     LIKWID_MARKER_START("GeracaoSistemaLinearOtim");
 
     //Metodo dos minimos quadrados
-    preencherMatrizOtimizado2Cont(matrizCont, pontos, qntPontos, tamanho);
-    preencherVetor(vetorB2, pontos, qntPontos, tamanho);
+    preencherMatrizOtimizado2(matriz, pontos, qntPontos, tamanho);
+    preencherVetor(vetorB, pontos, qntPontos, tamanho);
 
     LIKWID_MARKER_STOP("GeracaoSistemaLinearOtim");
 
     //depois de gerar
     gettimeofday(&tgeraSL2otim, NULL);
 
+    //debug
+    // imprime_sistema(matriz, vetorB, tamanho);
 
     //antes de solucionar
     gettimeofday(&tsolSL1otim, NULL);
 
     LIKWID_MARKER_START ("SolucaoSistemaLinearOtim");
 
-
-
-
-//debug
-//printf("Imprimindo vetorB2:\n");
-//imprime_vetor(vetorB2, tamanho);
-
     //triangulariza matriz
-    eliminacaoGaussCont(matrizCont, vetorB2, tamanho);
-
-//debug
-//printf("\nImprimindo vetorB2 após gauss:\n");
-//imprime_vetor(vetorB2, tamanho);
-//printf("\n");
-
+    eliminacaoGauss(matriz, vetorB, tamanho);
     //resolve o sistema encontrando os coeficientes
-    retrossubsCont(matrizCont, vetorB2, coeficientes2, tamanho);
-
-
-
-
-
-    //debug
-    //imprime_vetor(coeficientes, tamanho);
+    retrossubs(matriz, vetorB, coeficientes, tamanho);
 
     LIKWID_MARKER_STOP ("SolucaoSistemaLinearOtim");
 
@@ -190,7 +131,7 @@ int main(){
     LIKWID_MARKER_START ("CalculoResiduosOtim");
 
     //calucula residuos
-    calculaResiduo(pontos, coeficientes2, residuos2, qntPontos, tamanho);
+    calculaResiduo(pontos, coeficientes, residuos, qntPontos, tamanho);
 
     LIKWID_MARKER_STOP ("CalculoResiduosOtim");
 
@@ -200,16 +141,13 @@ int main(){
 
     //FIM CALCULOS OTIMIZADOS -----------
 
-    //DEBUG
-    //imprime_sistemaCont(matrizCont, vetorB2, tamanho);
-    //printf("\n\n");
 
     //imprime vetor com coeficientes
-    imprime_vetor(coeficientes2, tamanho);
+    imprime_vetor(coeficientes, tamanho);
     printf("\n");
 
     //imprime residuos
-    imprime_vetor(residuos2, qntPontos);
+    imprime_vetor(residuos, qntPontos);
     printf("\n");
 
     //calcula e imprime a difenreca de tempos nao otimizados
