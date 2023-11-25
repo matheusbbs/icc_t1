@@ -40,6 +40,7 @@ void preencherMatriz(intervalo **matriz, int tam, ponto *pontos, int qntPontos){
     }
 }
 
+// se botar __restrict aqui, na matriz, não muda nada
 void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
@@ -77,6 +78,7 @@ void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, 
     }
 }
 
+// se botar __restrict aqui, na matriz, não muda nada
 void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
@@ -113,6 +115,7 @@ void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos,
     }
 }
 
+// se botar __restrict aqui, na matriz, não muda nada
 void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
@@ -151,6 +154,7 @@ void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPont
     }
 }
 
+// se botar __restrict aqui, no vetor, não muda nada
 void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     for(int i=0; i<tam; i++){
         intervalo soma;
@@ -171,6 +175,7 @@ void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     }
 }
 
+// se botar __restrict aqui, no vetor residuos, não muda nada
 void calculaResiduo(ponto *pontos, intervalo *coeficientes, intervalo *residuos, int qntPontos, int grau){
     //for percorrendo vetor de pontos, calculando os residuos
     for(int i=0; i<qntPontos; i++){

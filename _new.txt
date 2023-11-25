@@ -1,20 +1,27 @@
-No T1 tinham as funções: 
-preencherMatriz
-preencherMatrizOtimizado
-
-Criar nova função
-preencherMatrizOtimizado2
-que vai copiar as diagonais sem ficar mudando toda hora de coluna (copia quase uma linha inteira de cada vez), aproveitando a cache
-
-
-
 No T1 a matriz foi implementada como um vetor de ponteiros para linhas.
-Depois dá pra tentar implementar a matriz como algo contínuo, e ir acessando os elementos usando multiplicação.
-Acho que isso vai melhorar o desempenho pra números bem grandes (aproveitando a cache?)
+Nesta nova versão (v2) ela foi implementada como um vetor (contínuo), e os elementos foram acessados usando aritmética.
+
+A nova função preencherMatrizOtimizado2Cont
+copia as diagonais sem ficar mudando toda hora de coluna (copia quase uma linha inteira de cada vez), aproveitando a cache
 
 
 
-Depois dá pra tentar colocar _restrict pra vetorizar e usar os AVX
+
+
+
+acho que tem que colocar __restrict em alguns lugares pra usar os AVX
+    onde colocar? tem que pensar...
+    testei em vários lugares e em nenhum funcionou. Será que precisa mesmo?
+
+
+dá pra tentar umas otimizações tipo Unroll & Jam / Loop Blocking
+    onde colocar? tem que pensar...
+    será que depois de fazer isso se botar __restrict funciona??
+
+otimização no método dos mínimos quadrados, como e onde fazer ??? (Luan)
+
+
+
 
 
 
@@ -23,10 +30,11 @@ Parte do enunciado: Análise de Desempenho
 Uma vez alterado o código, você deve comparar o desempenho das duas versões em relação a:
 
 (A) geração do SL pelo Método dos Mínimos Quadrados;
-    a parte de copiar as diagonais vai melhorar isso
+    a parte de copiar as diagonais já melhorou isso
 
 (B) solução do SL pelo Método da Eliminação de Gauss
     tem que mudar algo na eliminacaoGauss ou na retrossubs (ou não, talvez a matriz alocada continuamente já resolva isso, tem que testar)
+    (comparar os tempos e ver se já mudou algo. Também pensar se dá pra otimizar essa parte do código com alguma técnica)
 
 (C) cálculo do resíduo (incluindo o cálculo de f(xi))
-    A função imprimeResiduo percorre o vetor calculando os resíduos. Tem que mudar algo nela.
+    A função calculaResiduo percorre o vetor calculando os resíduos. Tem que mudar algo nela.
