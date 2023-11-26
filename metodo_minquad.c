@@ -79,7 +79,7 @@ void preencherMatrizOtimizado(intervalo **matriz, ponto *pontos, int qntPontos, 
 }
 
 // se botar __restrict aqui, na matriz, não muda nada
-void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
+void preencherMatrizOtimizadoV2Prototipo(intervalo **matriz, ponto *pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
         if(i == 0)  // só a primeira linha
@@ -116,7 +116,7 @@ void preencherMatrizOtimizado2(intervalo **matriz, ponto *pontos, int qntPontos,
 }
 
 // se botar __restrict aqui, na matriz, não muda nada
-void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPontos, int tam){
+void preencherMatrizOtimizadoV2(intervalo *restrict matriz, ponto *restrict pontos, int qntPontos, int tam){
     int i, j;
     for(i = 0; i < tam; i++){
         if(i == 0)  // só a primeira linha
@@ -127,7 +127,6 @@ void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPont
         if(i>0){ // copia todos os elementos (menos o último) da linha anterior
             for(int c=0; c<=tam-2; c++)
                 matriz[i *tam+ c] = matriz[(i-1) *tam+ (c+1)];
-                //matriz[i][c] = matriz[i-1][c+1];
         }
 
         for(; j < tam; j++){
@@ -138,15 +137,14 @@ void preencherMatrizOtimizado2Cont(intervalo *matriz, ponto *pontos, int qntPont
             for(int k = 0; k < qntPontos; k++){
                 intervalo mult1, mult2, mult;
 
-                mult1 = potencia(&pontos[k].x, j);
-                mult2 = potencia(&pontos[k].x, i);
+                mult1 = potenciaV2(&pontos[k].x, j);
+                mult2 = potenciaV2(&pontos[k].x, i);
 
-                mult = multiplicar(&mult1, &mult2);
+                mult = multiplicarV2(&mult1, &mult2);
 
                 soma = somar(&soma, &mult); // incrementa soma
             }
             matriz[i *tam+ j] = soma;
-            //matriz[i][j] = soma;
         }
 
         //printf("após calcular linha %d:\n", i);
@@ -175,6 +173,27 @@ void preencherVetor(intervalo *vetor, ponto *pontos, int qntPontos, int tam){
     }
 }
 
+// se botar __restrict aqui, no vetor, não muda nada
+void preencherVetorV2(intervalo *restrict vetor, ponto *restrict pontos, int qntPontos, int tam){
+    for(int i=0; i<tam; i++){
+        intervalo soma;
+        encontraIntervaloLongo(&soma, 0);
+
+        //calcula somatorio (termos independentes)
+        for(int k=0; k<qntPontos; k++){
+            intervalo mult1, mult2, mult;
+
+            mult1 = pontos[k].y;
+            mult2 = potenciaV2(&pontos[k].x, i);
+
+            mult = multiplicarV2(&mult1, &mult2);
+
+            soma = somar(&soma, &mult); // incrementa soma
+        }
+        vetor[i] = soma;
+    }
+}
+
 // se botar __restrict aqui, no vetor residuos, não muda nada
 void calculaResiduo(ponto *pontos, intervalo *coeficientes, intervalo *residuos, int qntPontos, int grau){
     //for percorrendo vetor de pontos, calculando os residuos
@@ -188,6 +207,25 @@ void calculaResiduo(ponto *pontos, intervalo *coeficientes, intervalo *residuos,
             coeficiente = coeficientes[j];
             pot = potencia(&pontos[i].x, j);
             mult = multiplicar(&coeficiente, &pot);
+            soma = somar(&soma, &mult);  // incrementa soma
+        }
+        residuos[i] = subtrair(&pontos[i].y, &soma); //calcula a diferenca
+    }
+}
+
+// se botar __restrict aqui, no vetor residuos, não muda nada
+void calculaResiduoV2(ponto *restrict pontos, intervalo *restrict coeficientes, intervalo *restrict residuos, int qntPontos, int grau){
+    //for percorrendo vetor de pontos, calculando os residuos
+    for(int i=0; i<qntPontos; i++){
+        intervalo coeficiente, pot, mult, soma;
+
+        // calcula o valor da funcao naquele ponto
+        encontraIntervaloLongo(&soma, 0); //soma = 0
+        for(int j=0; j<grau; j++){
+            //soma += Aj * X^j
+            coeficiente = coeficientes[j];
+            pot = potenciaV2(&pontos[i].x, j);
+            mult = multiplicarV2(&coeficiente, &pot);
             soma = somar(&soma, &mult);  // incrementa soma
         }
         residuos[i] = subtrair(&pontos[i].y, &soma); //calcula a diferenca

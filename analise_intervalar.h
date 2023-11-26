@@ -31,9 +31,18 @@ intervalo subtrair(intervalo *inter, intervalo *inter2);
 //multiplica dois intervalos, retorna resultado
 intervalo multiplicar(intervalo *inter, intervalo *inter2);
 
+//multiplica dois intervalos positivos, retorna resultado
+intervalo multiplicarV2(intervalo *inter, intervalo *inter2);
+
 //divide dois intervalos, retorna resultado
 intervalo dividir(intervalo *inter, intervalo *inter2);
+
+//divide dois intervalos positivos, retorna resultado
+intervalo dividirV2(intervalo *inter, intervalo *inter2);
 
 //eleva um intervalo a uma potencia >= 0 e retorna o resultado
 //erro: retorna [-1,-1] caso p < 0
 intervalo potencia(intervalo *inter, int p);
+
+//retorna potencia de intervalo positivo
+intervalo potenciaV2(intervalo *inter, int p);

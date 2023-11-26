@@ -130,6 +130,17 @@ intervalo multiplicar(intervalo *inter, intervalo *inter2){
     return temp;
 }
 
+intervalo multiplicarV2(intervalo *inter, intervalo *inter2){
+    intervalo temp;
+    fesetround(FE_DOWNWARD);
+    //como intervalos sao positivos, o menor vai ser a multiplicacao dos menores, e o maior dos maiores
+    temp.menor = inter->menor * inter2->menor;
+    
+    fesetround(FE_UPWARD);
+    temp.maior = inter->maior * inter2->maior;
+    return temp;
+}
+
 intervalo dividir(intervalo *inter, intervalo *inter2){
     intervalo temp, segundo;
     if (inter2->menor == 0 || inter2->maior == 0){ //divide por 0
@@ -141,6 +152,20 @@ intervalo dividir(intervalo *inter, intervalo *inter2){
     segundo.menor = 1/inter2->maior;
     segundo.maior = 1/inter2->menor;
     temp = multiplicar(inter, &segundo);
+    return temp;
+}
+
+intervalo dividirV2(intervalo *inter, intervalo *inter2){
+    intervalo temp, segundo;
+    if (inter2->menor == 0 || inter2->maior == 0){ //divide por 0
+        temp.menor = -INFINITY;
+        temp.maior = INFINITY;
+        return temp;
+    }
+    //multiplica pelo inverso
+    segundo.menor = 1/inter2->maior;
+    segundo.maior = 1/inter2->menor;
+    temp = multiplicarV2(inter, &segundo);
     return temp;
 }
 
@@ -173,6 +198,28 @@ intervalo potencia(intervalo *inter, int p){
         temp.menor = 0;
         fesetround(FE_UPWARD);
         temp.maior = fmax(pow(inter->menor, p), pow(inter->maior, p));
+    }
+    return temp;
+}
+
+intervalo potenciaV2(intervalo *inter, int p){
+    intervalo temp;
+    if (p < 0){
+        fprintf(stderr, "potencia p deve ser >= 0");
+        temp.menor = -1;
+        temp.maior = -1;
+        return temp;
+    }
+    if (p == 0){
+        temp.menor = 1;
+        temp.maior = 1;
+    }
+    // como intervalo eh positivo, essa eh a unica alternativa
+    else{
+        fesetround(FE_DOWNWARD);
+        temp.menor = pow(inter->menor, p);
+        fesetround(FE_UPWARD);
+        temp.maior = pow(inter->maior, p);
     }
     return temp;
 }

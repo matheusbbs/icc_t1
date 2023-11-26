@@ -2,7 +2,7 @@
 #Nome: Matheus Branco Barreto dos Santos; GRR:20203906
 
 LIKWID_HOME = /home/soft/likwid
-CFLAGS = -g -c -Wall -O3 -mavx -march=native -DLIKWID_PERFMON -I$(LIKWID_HOME)/include # flags de compilacao
+CFLAGS = -g -c -Wall -fopt-info-vec -fopt-info-vec-missed -falign-functions=32 -falign-loops=32 -O3 -mavx -march=native -DLIKWID_PERFMON -I$(LIKWID_HOME)/include # flags de compilacao
 LDFLAGS = -lm -L${LIKWID_HOME}/lib -llikwid
 
 CC = gcc
