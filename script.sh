@@ -3,10 +3,7 @@
 
 #!/bin/bash
 
-<<<<<<< HEAD
 #tamanhos=(100000000)
-=======
->>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 tamanhos=(64 128 200 256 512 600 800 1024 2000 3000 4096 6000 7000 10000 50000 100000) # 1000000 10000000 100000000)
 
 grupos=("FLOPS_DP" "L3" "L2CACHE" )
@@ -24,13 +21,12 @@ for size in "${tamanhos[@]}"; do
     done
 done
 
-rm ./dados/*.csv
-rm ./graficos/*.png
+rm -f ./dados/*.csv
+rm -f ./graficos/*.png
 
 # gera TEMPOS.csv
 for size in "${tamanhos[@]}"; do
-    tempo=$(./gera_entrada "$size" | ./ajustePol)
-    echo "$tempo" | awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' >> ./dados/TEMPOS.csv
+    ./gera_entrada "$size" | ./ajustePol | "$tempo" | awk -v size="$size" -F'=' '{tempo = (tempo == "") ? $2: tempo ", " $2} END {print size ", " tempo}' >> ./dados/TEMPOS.csv
 done
 
 # gera a tabela de L3 bandwidth
