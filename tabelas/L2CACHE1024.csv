@@ -1,138 +1,138 @@
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region GeracaoSistemaLinear,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.001936,
+RDTSC Runtime [s],0.001927,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,8640319
-CPU_CLK_UNHALTED_CORE,FIXC1,4016397
-CPU_CLK_UNHALTED_REF,FIXC2,4207632
-L2_TRANS_ALL_REQUESTS,PMC0,18015
-L2_RQSTS_MISS,PMC1,2840
+CPU_CLK_UNHALTED_CORE,FIXC1,4002386
+CPU_CLK_UNHALTED_REF,FIXC2,4192914
+L2_TRANS_ALL_REQUESTS,PMC0,16907
+L2_RQSTS_MISS,PMC1,2580
 TABLE,Region GeracaoSistemaLinear,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0019,
 Runtime unhalted [s],0.0018,
-Clock [MHz],2095.1027,
-CPI,0.4648,
-L2 request rate,0.0021,
+Clock [MHz],2095.0760,
+CPI,0.4632,
+L2 request rate,0.0020,
 L2 miss rate,0.0003,
-L2 miss ratio,0.1576,
+L2 miss ratio,0.1526,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region SolucaoSistemaLinear,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
 RDTSC Runtime [s],0.000004,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,16099
-CPU_CLK_UNHALTED_CORE,FIXC1,14412
-CPU_CLK_UNHALTED_REF,FIXC2,15114
-L2_TRANS_ALL_REQUESTS,PMC0,2325
-L2_RQSTS_MISS,PMC1,692
+CPU_CLK_UNHALTED_CORE,FIXC1,15115
+CPU_CLK_UNHALTED_REF,FIXC2,15818
+L2_TRANS_ALL_REQUESTS,PMC0,2692
+L2_RQSTS_MISS,PMC1,818
 TABLE,Region SolucaoSistemaLinear,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],3.805647e-06,
-Runtime unhalted [s],6.566256e-06,
-Clock [MHz],2092.9135,
-CPI,0.8952,
-L2 request rate,0.1444,
-L2 miss rate,0.0430,
-L2 miss ratio,0.2976,
+Runtime (RDTSC) [s],3.814189e-06,
+Runtime unhalted [s],6.886704e-06,
+Clock [MHz],2097.2652,
+CPI,0.9389,
+L2 request rate,0.1672,
+L2 miss rate,0.0508,
+L2 miss ratio,0.3039,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region CalculoResiduos,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000578,
+RDTSC Runtime [s],0.000579,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,2576105
-CPU_CLK_UNHALTED_CORE,FIXC1,1206166
-CPU_CLK_UNHALTED_REF,FIXC2,1263658
-L2_TRANS_ALL_REQUESTS,PMC0,5499
-L2_RQSTS_MISS,PMC1,1658
+CPU_CLK_UNHALTED_CORE,FIXC1,1208209
+CPU_CLK_UNHALTED_REF,FIXC2,1265704
+L2_TRANS_ALL_REQUESTS,PMC0,5926
+L2_RQSTS_MISS,PMC1,1855
 TABLE,Region CalculoResiduos,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0006,
-Runtime unhalted [s],0.0005,
-Clock [MHz],2094.9997,
-CPI,0.4682,
-L2 request rate,0.0021,
-L2 miss rate,0.0006,
-L2 miss ratio,0.3015,
+Runtime unhalted [s],0.0006,
+Clock [MHz],2095.1093,
+CPI,0.4690,
+L2 request rate,0.0023,
+L2 miss rate,0.0007,
+L2 miss ratio,0.3130,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.001884,
+RDTSC Runtime [s],0.001919,
 call count,1,
 Event,Counter,HWThread 3
-INSTR_RETIRED_ANY,FIXC0,8397473
-CPU_CLK_UNHALTED_CORE,FIXC1,3953189
-CPU_CLK_UNHALTED_REF,FIXC2,4141500
-L2_TRANS_ALL_REQUESTS,PMC0,14268
-L2_RQSTS_MISS,PMC1,1574
+INSTR_RETIRED_ANY,FIXC0,8397474
+CPU_CLK_UNHALTED_CORE,FIXC1,3957909
+CPU_CLK_UNHALTED_REF,FIXC2,4146362
+L2_TRANS_ALL_REQUESTS,PMC0,16453
+L2_RQSTS_MISS,PMC1,2392
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0019,
 Runtime unhalted [s],0.0018,
-Clock [MHz],2095.0594,
-CPI,0.4708,
-L2 request rate,0.0017,
-L2 miss rate,0.0002,
-L2 miss ratio,0.1103,
+Clock [MHz],2095.0546,
+CPI,0.4713,
+L2 request rate,0.0020,
+L2 miss rate,0.0003,
+L2 miss ratio,0.1454,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
 RDTSC Runtime [s],0.000004,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,14883
-CPU_CLK_UNHALTED_CORE,FIXC1,15875
-CPU_CLK_UNHALTED_REF,FIXC2,16654
-L2_TRANS_ALL_REQUESTS,PMC0,2836
-L2_RQSTS_MISS,PMC1,929
+CPU_CLK_UNHALTED_CORE,FIXC1,14021
+CPU_CLK_UNHALTED_REF,FIXC2,14608
+L2_TRANS_ALL_REQUESTS,PMC0,2390
+L2_RQSTS_MISS,PMC1,741
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],3.716339e-06,
-Runtime unhalted [s],7.232814e-06,
-Clock [MHz],2092.1923,
-CPI,1.0667,
-L2 request rate,0.1906,
-L2 miss rate,0.0624,
-L2 miss ratio,0.3276,
+Runtime (RDTSC) [s],3.693913e-06,
+Runtime unhalted [s],6.388255e-06,
+Clock [MHz],2106.6141,
+CPI,0.9421,
+L2 request rate,0.1606,
+L2 miss rate,0.0498,
+L2 miss ratio,0.3100,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194858029 GHz,
+CPU clock:,2.194809147 GHz,
 TABLE,Region CalculoResiduosOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000577,
+RDTSC Runtime [s],0.000579,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,2576179
-CPU_CLK_UNHALTED_CORE,FIXC1,1204238
-CPU_CLK_UNHALTED_REF,FIXC2,1261546
-L2_TRANS_ALL_REQUESTS,PMC0,5455
-L2_RQSTS_MISS,PMC1,1762
+CPU_CLK_UNHALTED_CORE,FIXC1,1206862
+CPU_CLK_UNHALTED_REF,FIXC2,1264362
+L2_TRANS_ALL_REQUESTS,PMC0,5728
+L2_RQSTS_MISS,PMC1,1743
 TABLE,Region CalculoResiduosOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0006,
 Runtime unhalted [s],0.0005,
-Clock [MHz],2095.1526,
-CPI,0.4675,
-L2 request rate,0.0021,
+Clock [MHz],2094.9948,
+CPI,0.4685,
+L2 request rate,0.0022,
 L2 miss rate,0.0007,
-L2 miss ratio,0.3230,
+L2 miss ratio,0.3043,
