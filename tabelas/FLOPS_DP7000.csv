@@ -1,6 +1,7 @@
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
 TABLE,Region GeracaoSistemaLinear,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
@@ -10,11 +11,23 @@ Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,118794300
 CPU_CLK_UNHALTED_CORE,FIXC1,67457670
 CPU_CLK_UNHALTED_REF,FIXC2,57572180
+=======
+CPU clock:,2.194904827 GHz,
+TABLE,Region GeracaoSistemaLinear,Group 1 Raw,FLOPS_DP,6
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.013233,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,59036050
+CPU_CLK_UNHALTED_CORE,FIXC1,27403210
+CPU_CLK_UNHALTED_REF,FIXC2,28708200
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,0
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,32076430
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region GeracaoSistemaLinear,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],0.0252,
 Runtime unhalted [s],0.0307,
 Clock [MHz],2571.8085,
@@ -23,24 +36,45 @@ DP [MFLOP/s],1273.7689,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],0,
 Scalar [MUOPS/s],1273.7689,
+=======
+Runtime (RDTSC) [s],0.0132,
+Runtime unhalted [s],0.0125,
+Clock [MHz],2095.1309,
+CPI,0.4642,
+DP [MFLOP/s],1151.1034,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],0,
+Scalar [MUOPS/s],1151.1034,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,0,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
+=======
+CPU clock:,2.194904827 GHz,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 TABLE,Region SolucaoSistemaLinear,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
 RDTSC Runtime [s],0.000004,
 call count,1,
 Event,Counter,HWThread 3
+<<<<<<< HEAD
 INSTR_RETIRED_ANY,FIXC0,16197
 CPU_CLK_UNHALTED_CORE,FIXC1,29512
 CPU_CLK_UNHALTED_REF,FIXC2,25960
+=======
+INSTR_RETIRED_ANY,FIXC0,16193
+CPU_CLK_UNHALTED_CORE,FIXC1,14793
+CPU_CLK_UNHALTED_REF,FIXC2,15466
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,15
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,1030
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region SolucaoSistemaLinear,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],3.956859e-06,
 Runtime unhalted [s],1.344555e-05,
 Clock [MHz],2495.2492,
@@ -49,10 +83,21 @@ DP [MFLOP/s],267.8893,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],3.7909,
 Scalar [MUOPS/s],260.3075,
+=======
+Runtime (RDTSC) [s],3.741300e-06,
+Runtime unhalted [s],6.739700e-06,
+Clock [MHz],2099.3940,
+CPI,0.9135,
+DP [MFLOP/s],283.3240,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],4.0093,
+Scalar [MUOPS/s],275.3054,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,1.4354,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
 TABLE,Region CalculoResiduos,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
@@ -62,11 +107,23 @@ Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,17602580
 CPU_CLK_UNHALTED_CORE,FIXC1,12308450
 CPU_CLK_UNHALTED_REF,FIXC2,10610820
+=======
+CPU clock:,2.194904827 GHz,
+TABLE,Region CalculoResiduos,Group 1 Raw,FLOPS_DP,6
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.003963,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,17587940
+CPU_CLK_UNHALTED_CORE,FIXC1,8196969
+CPU_CLK_UNHALTED_REF,FIXC2,8587304
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,0
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,3990069
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region CalculoResiduos,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],0.0050,
 Runtime unhalted [s],0.0056,
 Clock [MHz],2546.0938,
@@ -75,10 +132,21 @@ DP [MFLOP/s],797.2967,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],0,
 Scalar [MUOPS/s],797.2967,
+=======
+Runtime (RDTSC) [s],0.0040,
+Runtime unhalted [s],0.0037,
+Clock [MHz],2095.1357,
+CPI,0.4661,
+DP [MFLOP/s],1006.8224,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],0,
+Scalar [MUOPS/s],1006.8224,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,0,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
@@ -88,11 +156,23 @@ Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,116348500
 CPU_CLK_UNHALTED_CORE,FIXC1,66385780
 CPU_CLK_UNHALTED_REF,FIXC2,57270050
+=======
+CPU clock:,2.194904827 GHz,
+TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,FLOPS_DP,6
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.012929,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,57376870
+CPU_CLK_UNHALTED_CORE,FIXC1,26996370
+CPU_CLK_UNHALTED_REF,FIXC2,28281880
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,0
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,30682650
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],0.0269,
 Runtime unhalted [s],0.0302,
 Clock [MHz],2544.2950,
@@ -101,24 +181,45 @@ DP [MFLOP/s],1141.5084,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],0,
 Scalar [MUOPS/s],1141.5084,
+=======
+Runtime (RDTSC) [s],0.0129,
+Runtime unhalted [s],0.0123,
+Clock [MHz],2095.1388,
+CPI,0.4705,
+DP [MFLOP/s],1087.1389,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],0,
+Scalar [MUOPS/s],1087.1389,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,0,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
+=======
+CPU clock:,2.194904827 GHz,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
 RDTSC Runtime [s],0.000004,
 call count,1,
 Event,Counter,HWThread 3
+<<<<<<< HEAD
 INSTR_RETIRED_ANY,FIXC0,14977
 CPU_CLK_UNHALTED_CORE,FIXC1,30967
 CPU_CLK_UNHALTED_REF,FIXC2,27280
+=======
+INSTR_RETIRED_ANY,FIXC0,15132
+CPU_CLK_UNHALTED_CORE,FIXC1,15576
+CPU_CLK_UNHALTED_REF,FIXC2,16258
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,30
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,220
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],4.171445e-06,
 Runtime unhalted [s],1.410845e-05,
 Clock [MHz],2491.5795,
@@ -127,10 +228,21 @@ DP [MFLOP/s],67.1230,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],7.1918,
 Scalar [MUOPS/s],52.7395,
+=======
+Runtime (RDTSC) [s],3.686629e-06,
+Runtime unhalted [s],7.096435e-06,
+Clock [MHz],2102.8317,
+CPI,1.0293,
+DP [MFLOP/s],75.9501,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],8.1375,
+Scalar [MUOPS/s],59.6751,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,12,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
+<<<<<<< HEAD
 CPU clock:,2.194926452 GHz,
 TABLE,Region CalculoResiduosOtim,Group 1 Raw,FLOPS_DP,6
 Region Info,HWThread 3,
@@ -140,11 +252,23 @@ Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,17602260
 CPU_CLK_UNHALTED_CORE,FIXC1,8675364
 CPU_CLK_UNHALTED_REF,FIXC2,7322744
+=======
+CPU clock:,2.194904827 GHz,
+TABLE,Region CalculoResiduosOtim,Group 1 Raw,FLOPS_DP,6
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.003968,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,17588160
+CPU_CLK_UNHALTED_CORE,FIXC1,8200275
+CPU_CLK_UNHALTED_REF,FIXC2,8590758
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE,PMC0,0
 FP_ARITH_INST_RETIRED_SCALAR_DOUBLE,PMC1,3990069
 FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE,PMC2,0
 TABLE,Region CalculoResiduosOtim,Group 1 Metric,FLOPS_DP,9
 Metric,HWThread 3,
+<<<<<<< HEAD
 Runtime (RDTSC) [s],0.0035,
 Runtime unhalted [s],0.0040,
 Clock [MHz],2600.3621,
@@ -153,4 +277,14 @@ DP [MFLOP/s],1126.1186,
 AVX DP [MFLOP/s],0,
 Packed [MUOPS/s],0,
 Scalar [MUOPS/s],1126.1186,
+=======
+Runtime (RDTSC) [s],0.0040,
+Runtime unhalted [s],0.0037,
+Clock [MHz],2095.1380,
+CPI,0.4662,
+DP [MFLOP/s],1005.4574,
+AVX DP [MFLOP/s],0,
+Packed [MUOPS/s],0,
+Scalar [MUOPS/s],1005.4574,
+>>>>>>> 9011bdeb94af211f66ede0891e02381f67c57699
 Vectorization ratio,0,
