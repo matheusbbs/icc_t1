@@ -104,9 +104,12 @@ intervalo somar(intervalo *inter, intervalo *inter2){
 intervalo subtrair(intervalo *inter, intervalo *inter2){
     intervalo temp;
     fesetround(FE_DOWNWARD);
+//printf("\ninter->menor = %1.40e", inter->menor);
+//printf("\ninter->maior = %1.40e\n", inter->maior);
     temp.menor = inter->menor - inter2->maior;
     fesetround(FE_UPWARD);
     temp.maior = inter->maior - inter2->menor;
+//printf("resultado subtracao = "); imprime(temp);
     return temp;
 }
 

@@ -40,10 +40,8 @@ int main(){
     //le os pontos
     lerPontos(pontos, qntPontos);
 
-
-    //printf("Não otimizado:\n\n");
+//printf("Não otimizado:\n\n");
     //INICIO CALCULOS NAO OTIMIZADOS ----------
-
 
     //mede tempo antes de gerar valores
     gettimeofday(&tgeraSL1, NULL);
@@ -64,9 +62,6 @@ int main(){
 
     LIKWID_MARKER_START ("SolucaoSistemaLinear");
 
-
-
-
 //debug
 //printf("Imprimindo vetorB:\n");
 //imprime_vetor(vetorB, tamanho);
@@ -82,11 +77,6 @@ int main(){
     //resolve o sistema encontrando os coeficientes
     retrossubs(matriz, vetorB, coeficientes, tamanho);
 
-
-
-
-
-
     LIKWID_MARKER_STOP ("SolucaoSistemaLinear");
 
     //depois de solucionar
@@ -97,8 +87,33 @@ int main(){
 
     LIKWID_MARKER_START ("CalculoResiduos");
 
-    //calucula residuos
+//debug
+/*
+printf("\n\nANTES DE CALCULAR residuos:");
+
+printf("\npontos:\n");
+imprime_vetor(pontos, qntPontos);
+
+printf("\ncoeficientes:\n");
+imprime_vetor(coeficientes, tamanho);
+
+printf("\nresiduos:\n");
+imprime_vetor(residuos, qntPontos);
+
+printf("\nqntPontos:\n");
+printf("%d", qntPontos);
+
+printf("\ntamanho:\n");
+printf("%d", tamanho);
+
+printf("\n\n");
+*/
+
+    //calcula residuos
     calculaResiduo(pontos, coeficientes, residuos, qntPontos, tamanho);
+//printf("\n\nDEPOIS DE CALCULAR residuos:\n");
+//imprime_vetor(residuos, qntPontos);
+//printf("\n\n");
 
     LIKWID_MARKER_STOP ("CalculoResiduos");
 
@@ -107,24 +122,18 @@ int main(){
 
     //FIM CALCULOS NAO OTIMIZADOS ----------
 
-
-    
-
     //DEBUG
-    //imprime_sistema(matriz, vetorB, tamanho);
-    //printf("\n\n");
+//imprime_sistema(matriz, vetorB, tamanho);
+//printf("\n\n");
     //imprime vetor com coeficientes
-    //imprime_vetor(coeficientes, tamanho);
-    //printf("\n");
+//imprime_vetor(coeficientes, tamanho);
+//printf("\n");
 
-    //imprime residuos
-    //imprime_vetor(residuos, qntPontos);
-    //printf("\n");
+//imprime residuos
+//imprime_vetor(residuos, qntPontos);
+//printf("\n");
 
-
-
-
-    //printf("\n\nOtimizado:\n\n");
+//printf("\n\nOtimizado:\n\n");
 
     //INICIO CALCULOS OTIMIZADOS -----------
 
@@ -148,14 +157,10 @@ int main(){
     //depois de gerar
     gettimeofday(&tgeraSL2otim, NULL);
 
-
     //antes de solucionar
     gettimeofday(&tsolSL1otim, NULL);
 
     LIKWID_MARKER_START ("SolucaoSistemaLinearOtim");
-
-
-
 
 //debug
 //printf("Imprimindo vetorB2:\n");
@@ -172,9 +177,10 @@ int main(){
     //resolve o sistema encontrando os coeficientes
     retrossubsV2(matrizCont, vetorB2, coeficientes2, tamanho);
 
-
     //debug
-    //imprime_vetor(coeficientes, tamanho);
+//printf("\n\nimprimindo coeficientes2:\n");
+//imprime_vetor(coeficientes2, tamanho);
+//printf("\n\n");
 
     LIKWID_MARKER_STOP ("SolucaoSistemaLinearOtim");
 
@@ -186,20 +192,47 @@ int main(){
 
     LIKWID_MARKER_START ("CalculoResiduosOtim");
 
-    //calucula residuos
-    calculaResiduoV2(pontos, coeficientes2, residuos2, qntPontos, tamanho);
+//debug
+/*
+printf("\n\nANTES DE CALCULAR residuos2:");
 
+printf("\npontos:\n");
+imprime_vetor(pontos, qntPontos);
+
+printf("\ncoeficientes2:\n");
+imprime_vetor(coeficientes2, tamanho);
+
+printf("\nresiduos2:\n");
+imprime_vetor(residuos2, qntPontos);
+
+printf("\nqntPontos:\n");
+printf("%d", qntPontos);
+
+printf("\ntamanho:\n");
+printf("%d", tamanho);
+
+printf("\n\n");
+*/
+
+    //calcula residuos
+    calculaResiduo(pontos, coeficientes2, residuos2, qntPontos, tamanho); //debugging
+    //calculaResiduoV2(pontos, coeficientes2, residuos2, qntPontos, tamanho);
+/*
+printf("\n\nDEPOIS DE CALCULAR residuos2:");
+printf("\nresiduos2:\n");
+imprime_vetor(residuos2, qntPontos);
+printf("\n\n");
+*/
     LIKWID_MARKER_STOP ("CalculoResiduosOtim");
 
     //depois de calcular residuo
     gettimeofday(&tresiSL2otim, NULL);
 
-
     //FIM CALCULOS OTIMIZADOS -----------
 
     //DEBUG
-    //imprime_sistemaCont(matrizCont, vetorB2, tamanho);
-    //printf("\n\n");
+//imprime_sistemaV2(matrizCont, vetorB2, tamanho);
+//printf("\n\n");
 
     //imprime vetor com coeficientes
     imprime_vetor(coeficientes2, tamanho);

@@ -1,24 +1,103 @@
+(até o momento não consegui vetorizar de jeito nenhum. Talvez tenha que copiar partes de algumas funções e colar em alguns lugares, 
+ou reescrever, ou fazer o que o Luan disse para geração do SL)
+(AVX DP [MFLOP/s],0,) ta sempre 0
+
+
+
+///////////////////////////////////////
+//////////////// TO DO ////////////////
+///////////////////////////////////////
+
+- Testar implementar a otimização da prova 27.04.2022 questão 1 (Geração do SL)
+
+- Testar o que o Luan disse: Geração de SL:
+    Otimizar a cache, fazer um loop para acessar o vetor de pontos, aí fazer dois (ou três) loops
+    iterar para cada somátório, você pode fazer um vetor para guardar já as potências do ponto x
+    que está sendo acessado, dessa forma vai poder fazer em avx
+
+- Testar o que o Luan disse: Resíduo do SL:
+    O resíduo também utilizar o vetor de pontos, então a otimização a ser feita é parecida com a do solução
+
+- Gráficos em escala Logarítmica, arrumar resolução
+
+- FUCKING RELATÓRIO (em formato artigo)
+
+
+
+
+
+- Tem que botar alguma variavel como long long int ?   (???)
+- Conferir tudo que o enunciado pede
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+//////////////// Descrição do que já foi feito ////////////////
+///////////////////////////////////////////////////////////////
+
+
 No T1 a matriz foi implementada como um vetor de ponteiros para linhas.
 Nesta nova versão (v2) ela foi implementada como um vetor (contínuo), e os elementos foram acessados usando aritmética.
 
-A nova função preencherMatrizOtimizado2Cont
-copia as diagonais sem ficar mudando toda hora de coluna (copia quase uma linha inteira de cada vez), aproveitando a cache
+Módulo analise_intervalar:
+    Nova função: multiplicarV2 (otimização da anterior: multiplicar)
+    Como intervalos sao positivos, o menor vai ser a multiplicacao dos menores, e o maior dos maiores
 
+    Nova função: dividirV2 (otimização da anterior: dividir)
+    Essa função chama a multiplicarV2, a antiga chamava multiplicar
 
+    Nova função: potenciaV2 (otimização da anterior: potencia)
+    Como intervalo é positivo, só tem uma unica alternativa para a cláusula else
 
+Módulo eliminacao_gauss:
+Todas as novas funções desse módulo são apenas ajustes para lidar com a nova matriz alocada como um vetor:
 
+    Nova função: imprime_sistemaV2
+    Para imprimir o sistema que contém a matriz implementada como um vetor
 
+    Nova função: encontraMaxV2
+    encontra o valor máximo (em módulo) de uma coluna de uma matriz contínua (implementada como um vetor)
 
-acho que tem que colocar __restrict em alguns lugares pra usar os AVX
-    onde colocar? tem que pensar...
-    testei em vários lugares e em nenhum funcionou. Será que precisa mesmo?
+    Nova função: trocaLinhasV2
+    Troca todos os elementos de duas linhas da matriz contínua (implementada como um vetor)
 
+    Nova função: retrossubsV2
+    Chama multiplicarV2 e dividirV2, além de manipular a matriz contínua (implementada como um vetor)
 
-dá pra tentar umas otimizações tipo Unroll & Jam / Loop Blocking
-    onde colocar? tem que pensar...
-    será que depois de fazer isso se botar __restrict funciona??
+    Nova função: eliminacaoGaussV2
+    Chama multiplicarV2 e dividirV2, além de manipular a matriz contínua (implementada como um vetor)
 
-otimização no método dos mínimos quadrados, como e onde fazer ??? (Luan)
+Módulo metodo_minquad:
+    Nova função: preencherMatrizOtimizadoV2
+    Copia as diagonais sem ficar mudando toda hora de linha (copia quase uma linha inteira de cada vez), aproveitando a cache.
+    Na função antiga após calcular cada valor, repetia ele para todas as casas da diagonal, prejudicando em muito o desempenho.
+    Além disso chama as novas funções potenciaV2 e multiplicarV2
+
+    Nova função: preencherVetorV2
+    Chama as funções potenciaV2 e multiplicarV2
+
+    Nova função: calculaResiduoV2
+    Chama as funções potenciaV2 e multiplicarV2
+
 
 
 
@@ -27,14 +106,13 @@ otimização no método dos mínimos quadrados, como e onde fazer ??? (Luan)
 
 
 Parte do enunciado: Análise de Desempenho
-Uma vez alterado o código, você deve comparar o desempenho das duas versões em relação a:
 
 (A) geração do SL pelo Método dos Mínimos Quadrados;
-    a parte de copiar as diagonais já melhorou isso
+    a parte de copiar as diagonais de uma maneira mais otimizada (preencherMatrizOtimizadoV2) já melhorou bastante isso
 
 (B) solução do SL pelo Método da Eliminação de Gauss
-    tem que mudar algo na eliminacaoGauss ou na retrossubs (ou não, talvez a matriz alocada continuamente já resolva isso, tem que testar)
-    (comparar os tempos e ver se já mudou algo. Também pensar se dá pra otimizar essa parte do código com alguma técnica)
+    o fato da matriz ter sido declarada como um vetor já otimiza bastante isso. Nada de extraordinário foi feito aqui, as
+    novas funções são apenas para lidar com a nova forma de declaração da matriz.
 
 (C) cálculo do resíduo (incluindo o cálculo de f(xi))
-    A função calculaResiduo percorre o vetor calculando os resíduos. Tem que mudar algo nela.
+    A função chama duas funções otimizadas do módulo analise_intervalar: potenciaV2 e multiplicarV2

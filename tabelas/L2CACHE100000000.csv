@@ -1,0 +1,138 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region GeracaoSistemaLinear,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],186.352400,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,843300100000
+CPU_CLK_UNHALTED_CORE,FIXC1,389753300000
+CPU_CLK_UNHALTED_REF,FIXC2,408313100000
+L2_TRANS_ALL_REQUESTS,PMC0,1983397000
+L2_RQSTS_MISS,PMC1,658768400
+TABLE,Region GeracaoSistemaLinear,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],186.3524,
+Runtime unhalted [s],177.5892,
+Clock [MHz],2094.9306,
+CPI,0.4622,
+L2 request rate,0.0024,
+L2 miss rate,0.0008,
+L2 miss ratio,0.3321,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region SolucaoSistemaLinear,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,16099
+CPU_CLK_UNHALTED_CORE,FIXC1,15697
+CPU_CLK_UNHALTED_REF,FIXC2,16434
+L2_TRANS_ALL_REQUESTS,PMC0,2390
+L2_RQSTS_MISS,PMC1,725
+TABLE,Region SolucaoSistemaLinear,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],4.080324e-06,
+Runtime unhalted [s],7.152264e-06,
+Clock [MHz],2096.2667,
+CPI,0.9750,
+L2 request rate,0.1485,
+L2 miss rate,0.0450,
+L2 miss ratio,0.3033,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region CalculoResiduos,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],56.699150,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,251200500000
+CPU_CLK_UNHALTED_CORE,FIXC1,117073800000
+CPU_CLK_UNHALTED_REF,FIXC2,122648700000
+L2_TRANS_ALL_REQUESTS,PMC0,175354200
+L2_RQSTS_MISS,PMC1,54645370
+TABLE,Region CalculoResiduos,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],56.6992,
+Runtime unhalted [s],53.3441,
+Clock [MHz],2094.9319,
+CPI,0.4661,
+L2 request rate,0.0007,
+L2 miss rate,0.0002,
+L2 miss ratio,0.3116,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],184.395700,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,819600100000
+CPU_CLK_UNHALTED_CORE,FIXC1,385668300000
+CPU_CLK_UNHALTED_REF,FIXC2,404033600000
+L2_TRANS_ALL_REQUESTS,PMC0,1982510000
+L2_RQSTS_MISS,PMC1,658311800
+TABLE,Region GeracaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],184.3957,
+Runtime unhalted [s],175.7279,
+Clock [MHz],2094.9305,
+CPI,0.4706,
+L2 request rate,0.0024,
+L2 miss rate,0.0008,
+L2 miss ratio,0.3321,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region SolucaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,14883
+CPU_CLK_UNHALTED_CORE,FIXC1,16426
+CPU_CLK_UNHALTED_REF,FIXC2,17226
+L2_TRANS_ALL_REQUESTS,PMC0,2414
+L2_RQSTS_MISS,PMC1,782
+TABLE,Region SolucaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],4.136818e-06,
+Runtime unhalted [s],7.484429e-06,
+Clock [MHz],2092.7653,
+CPI,1.1037,
+L2 request rate,0.1622,
+L2 miss rate,0.0525,
+L2 miss ratio,0.3239,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194689825 GHz,
+TABLE,Region CalculoResiduosOtim,Group 1 Raw,L2CACHE,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],56.758270,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,251200500000
+CPU_CLK_UNHALTED_CORE,FIXC1,117176500000
+CPU_CLK_UNHALTED_REF,FIXC2,122756300000
+L2_TRANS_ALL_REQUESTS,PMC0,176250600
+L2_RQSTS_MISS,PMC1,54921730
+TABLE,Region CalculoResiduosOtim,Group 1 Metric,L2CACHE,7
+Metric,HWThread 3,
+Runtime (RDTSC) [s],56.7583,
+Runtime unhalted [s],53.3909,
+Clock [MHz],2094.9318,
+CPI,0.4665,
+L2 request rate,0.0007,
+L2 miss rate,0.0002,
+L2 miss ratio,0.3116,

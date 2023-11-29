@@ -16,6 +16,8 @@ void imprime_sistema(intervalo **matriz, intervalo *vetorB, int tamanho){
     }
 }
 
+// botar restrict aqui não está funcionando pois
+// a chamada da funcao imprime não ta permitindo vetorizar (tem if dentro dela)
 void imprime_sistemaV2(intervalo *restrict matriz, intervalo *restrict vetorB, int tamanho){
     for(int i=0; i<tamanho; i++){
         for(int j=0; j<tamanho; j++)
@@ -45,6 +47,9 @@ uint encontraMax(intervalo **matriz, uint i, uint tamanho){
     return linha_maior;
 }
 
+// botar restrict aqui não funciona pois tem um if dentro do laço
+// esse if é realmente necessário pois vai procurar e encontrar o maior valor
+//     not vectorized: number of iterations cannot be computed.
 uint encontraMaxV2(intervalo *restrict matriz, uint i, uint tamanho){
     double maior = fabs(matriz[i *tamanho+ i].maior);
     
@@ -75,14 +80,14 @@ void trocaLinhas(intervalo **matriz, intervalo *vetorB, int i, int iPivo){
 }
 
 // se botar __restrict aqui, na matriz e no vetor, não muda nada
+// Funções que envolvem operações como troca de elementos em posições arbitrárias
+// podem ser difíceis de vetorizar devido à natureza irregular do acesso à memória.
 void trocaLinhasV2(intervalo *restrict matriz, intervalo *restrict vetorB, int i, int iPivo, int tam){
     // Troca os elementos das linhas da matriz contínua
     int indiceLinha1 = i * tam;
     int indiceLinha2 = iPivo * tam;
 
     for (int k = 0; k < tam; k++) {
-        //printf("\ntrocando elementos [%d] e [%d]\n", indiceLinha1 + k, indiceLinha2 +k);
-
         intervalo temp = matriz[indiceLinha1 + k];
         matriz[indiceLinha1 + k] = matriz[indiceLinha2 + k];
         matriz[indiceLinha2 + k] = temp;
@@ -117,7 +122,8 @@ void retrossubs(intervalo **matriz, intervalo *vetorB, intervalo *vetorX, int ta
     //printf("\n");
 }
 
-// se botar __restrict aqui, no vetorX, não muda nada
+// se botar __restrict aqui, na matriz e no vetorX, não funciona
+// a funcao dividirV2 tem ifs la dentro
 void retrossubsV2(intervalo *restrict matriz, intervalo *restrict vetorB, intervalo *restrict vetorX, int tamanho){
 
     /* da última linha até a primeira vai fazendo a retrossubstituição */
@@ -177,8 +183,9 @@ void eliminacaoGauss(intervalo **matriz, intervalo *vetorB, int tamanho){
     }
 }
 
-// se botar __restrict aqui, na matriz e no vetor, não muda nada
-// mesmo se tirar o if, não muda nada
+// se botar __restrict aqui, na matriz e no vetor, não muda nada.
+// Chama varias funcoes que tem ifs dentro e/ou nao podem ser vetorizadas:
+//   encontraMaxV2, trocaLinhasV2, encontraIntervaloLongo
 void eliminacaoGaussV2(intervalo *restrict matriz, intervalo *restrict vetorB, int tamanho){
     /* para cada uma das colunas, vai zerar tudo que ta abaixo do pivô */
     for(int i=0; i < tamanho; ++i){

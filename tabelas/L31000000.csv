@@ -1,0 +1,156 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region GeracaoSistemaLinear,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],1.863205,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,8433006000
+CPU_CLK_UNHALTED_CORE,FIXC1,3894177000
+CPU_CLK_UNHALTED_REF,FIXC2,4079615000
+L2_LINES_IN_ALL,PMC0,6589845
+L2_TRANS_L2_WB,PMC1,61962
+TABLE,Region GeracaoSistemaLinear,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],1.8632,
+Runtime unhalted [s],1.7744,
+Clock [MHz],2094.9140,
+CPI,0.4618,
+L3 load bandwidth [MBytes/s],226.3573,
+L3 load data volume [GBytes],0.4218,
+L3 evict bandwidth [MBytes/s],2.1284,
+L3 evict data volume [GBytes],0.0040,
+L3 bandwidth [MBytes/s],228.4857,
+L3 data volume [GBytes],0.4257,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region SolucaoSistemaLinear,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,16164
+CPU_CLK_UNHALTED_CORE,FIXC1,15823
+CPU_CLK_UNHALTED_REF,FIXC2,16566
+L2_LINES_IN_ALL,PMC0,681
+L2_TRANS_L2_WB,PMC1,30
+TABLE,Region SolucaoSistemaLinear,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],3.920735e-06,
+Runtime unhalted [s],7.209732e-06,
+Clock [MHz],2096.2393,
+CPI,0.9789,
+L3 load bandwidth [MBytes/s],11116.2830,
+L3 load data volume [GBytes],4.358400e-05,
+L3 evict bandwidth [MBytes/s],489.7041,
+L3 evict data volume [GBytes],1.920000e-06,
+L3 bandwidth [MBytes/s],11605.9871,
+L3 data volume [GBytes],4.550400e-05,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region CalculoResiduos,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.569541,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,2512008000
+CPU_CLK_UNHALTED_CORE,FIXC1,1174348000
+CPU_CLK_UNHALTED_REF,FIXC2,1230269000
+L2_LINES_IN_ALL,PMC0,552834
+L2_TRANS_L2_WB,PMC1,36072
+TABLE,Region CalculoResiduos,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],0.5695,
+Runtime unhalted [s],0.5351,
+Clock [MHz],2094.9151,
+CPI,0.4675,
+L3 load bandwidth [MBytes/s],62.1227,
+L3 load data volume [GBytes],0.0354,
+L3 evict bandwidth [MBytes/s],4.0535,
+L3 evict data volume [GBytes],0.0023,
+L3 bandwidth [MBytes/s],66.1761,
+L3 data volume [GBytes],0.0377,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],1.870433,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,8196006000
+CPU_CLK_UNHALTED_CORE,FIXC1,3910768000
+CPU_CLK_UNHALTED_REF,FIXC2,4096995000
+L2_LINES_IN_ALL,PMC0,6600589
+L2_TRANS_L2_WB,PMC1,67585
+TABLE,Region GeracaoSistemaLinearOtim,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],1.8704,
+Runtime unhalted [s],1.7819,
+Clock [MHz],2094.9146,
+CPI,0.4772,
+L3 load bandwidth [MBytes/s],225.8502,
+L3 load data volume [GBytes],0.4224,
+L3 evict bandwidth [MBytes/s],2.3125,
+L3 evict data volume [GBytes],0.0043,
+L3 bandwidth [MBytes/s],228.1627,
+L3 data volume [GBytes],0.4268,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region SolucaoSistemaLinearOtim,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,14883
+CPU_CLK_UNHALTED_CORE,FIXC1,15986
+CPU_CLK_UNHALTED_REF,FIXC2,16720
+L2_LINES_IN_ALL,PMC0,681
+L2_TRANS_L2_WB,PMC1,24
+TABLE,Region SolucaoSistemaLinearOtim,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],4.217843e-06,
+Runtime unhalted [s],7.284003e-06,
+Clock [MHz],2098.3273,
+CPI,1.0741,
+L3 load bandwidth [MBytes/s],10333.2438,
+L3 load data volume [GBytes],4.358400e-05,
+L3 evict bandwidth [MBytes/s],364.1672,
+L3 evict data volume [GBytes],1.536000e-06,
+L3 bandwidth [MBytes/s],10697.4110,
+L3 data volume [GBytes],4.512000e-05,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
+CPU type:,Intel Core Broadwell processor,
+CPU clock:,2.194672361 GHz,
+TABLE,Region CalculoResiduosOtim,Group 1 Raw,L3,5
+Region Info,HWThread 3,
+RDTSC Runtime [s],0.568292,
+call count,1,
+Event,Counter,HWThread 3
+INSTR_RETIRED_ANY,FIXC0,2512009000
+CPU_CLK_UNHALTED_CORE,FIXC1,1172176000
+CPU_CLK_UNHALTED_REF,FIXC2,1227994000
+L2_LINES_IN_ALL,PMC0,549901
+L2_TRANS_L2_WB,PMC1,34927
+TABLE,Region CalculoResiduosOtim,Group 1 Metric,L3,10
+Metric,HWThread 3,
+Runtime (RDTSC) [s],0.5683,
+Runtime unhalted [s],0.5341,
+Clock [MHz],2094.9144,
+CPI,0.4666,
+L3 load bandwidth [MBytes/s],61.9289,
+L3 load data volume [GBytes],0.0352,
+L3 evict bandwidth [MBytes/s],3.9334,
+L3 evict data volume [GBytes],0.0022,
+L3 bandwidth [MBytes/s],65.8623,
+L3 data volume [GBytes],0.0374,

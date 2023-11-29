@@ -3,6 +3,8 @@
 
 LIKWID_HOME = /home/soft/likwid
 CFLAGS = -g -c -Wall -fopt-info-vec -fopt-info-vec-missed -falign-functions=32 -falign-loops=32 -O3 -mavx -march=native -DLIKWID_PERFMON -I$(LIKWID_HOME)/include # flags de compilacao
+#CFLAGS = -g -c -Wall -fopt-info-vec -fopt-info-vec-missed -falign-functions=32 -falign-loops=32 -O3 -mavx -march=native -ftree-vectorize -DLIKWID_PERFMON -I$(LIKWID_HOME)/include
+
 LDFLAGS = -lm -L${LIKWID_HOME}/lib -llikwid
 
 CC = gcc
