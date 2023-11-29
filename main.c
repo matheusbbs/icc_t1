@@ -19,7 +19,8 @@ int main(){
 
     LIKWID_MARKER_INIT;
 
-    int i, grau, qntPontos;
+    int i, grau;
+    long long int qntPontos;
     scanf("%d", &grau); // grau N
     scanf("%d", &qntPontos); //quantidade K de pontos
 

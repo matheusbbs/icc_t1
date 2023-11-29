@@ -1,138 +1,138 @@
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region GeracaoSistemaLinear,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.001609,
+RDTSC Runtime [s],0.001048,
 call count,1,
 Event,Counter,HWThread 3
-INSTR_RETIRED_ANY,FIXC0,5064744
-CPU_CLK_UNHALTED_CORE,FIXC1,2676527
-CPU_CLK_UNHALTED_REF,FIXC2,3461348
-L2_TRANS_ALL_REQUESTS,PMC0,19230
-L2_RQSTS_MISS,PMC1,5252
+INSTR_RETIRED_ANY,FIXC0,5064807
+CPU_CLK_UNHALTED_CORE,FIXC1,2601037
+CPU_CLK_UNHALTED_REF,FIXC2,2283446
+L2_TRANS_ALL_REQUESTS,PMC0,15689
+L2_RQSTS_MISS,PMC1,4195
 TABLE,Region GeracaoSistemaLinear,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],0.0016,
+Runtime (RDTSC) [s],0.0010,
 Runtime unhalted [s],0.0012,
-Clock [MHz],1697.2459,
-CPI,0.5285,
-L2 request rate,0.0038,
-L2 miss rate,0.0010,
-L2 miss ratio,0.2731,
+Clock [MHz],2500.2046,
+CPI,0.5136,
+L2 request rate,0.0031,
+L2 miss rate,0.0008,
+L2 miss ratio,0.2674,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region SolucaoSistemaLinear,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000004,
+RDTSC Runtime [s],0.000003,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,16099
-CPU_CLK_UNHALTED_CORE,FIXC1,17178
-CPU_CLK_UNHALTED_REF,FIXC2,18040
-L2_TRANS_ALL_REQUESTS,PMC0,2812
-L2_RQSTS_MISS,PMC1,917
+CPU_CLK_UNHALTED_CORE,FIXC1,15524
+CPU_CLK_UNHALTED_REF,FIXC2,12650
+L2_TRANS_ALL_REQUESTS,PMC0,2487
+L2_RQSTS_MISS,PMC1,723
 TABLE,Region SolucaoSistemaLinear,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],4.281772e-06,
-Runtime unhalted [s],7.826259e-06,
-Clock [MHz],2090.0394,
-CPI,1.0670,
-L2 request rate,0.1747,
-L2 miss rate,0.0570,
-L2 miss ratio,0.3261,
+Runtime (RDTSC) [s],3.147715e-06,
+Runtime unhalted [s],7.072678e-06,
+Clock [MHz],2693.5985,
+CPI,0.9643,
+L2 request rate,0.1545,
+L2 miss rate,0.0449,
+L2 miss ratio,0.2907,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region CalculoResiduos,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000339,
+RDTSC Runtime [s],0.000276,
 call count,1,
 Event,Counter,HWThread 3
-INSTR_RETIRED_ANY,FIXC0,1511015
-CPU_CLK_UNHALTED_CORE,FIXC1,711163
-CPU_CLK_UNHALTED_REF,FIXC2,745030
-L2_TRANS_ALL_REQUESTS,PMC0,4949
-L2_RQSTS_MISS,PMC1,1527
+INSTR_RETIRED_ANY,FIXC0,1511035
+CPU_CLK_UNHALTED_CORE,FIXC1,716517
+CPU_CLK_UNHALTED_REF,FIXC2,589578
+L2_TRANS_ALL_REQUESTS,PMC0,4758
+L2_RQSTS_MISS,PMC1,1452
 TABLE,Region CalculoResiduos,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0003,
 Runtime unhalted [s],0.0003,
-Clock [MHz],2095.1436,
-CPI,0.4707,
-L2 request rate,0.0033,
+Clock [MHz],2667.5034,
+CPI,0.4742,
+L2 request rate,0.0031,
 L2 miss rate,0.0010,
-L2 miss ratio,0.3085,
+L2 miss ratio,0.3052,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.001124,
+RDTSC Runtime [s],0.000925,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,4922355
-CPU_CLK_UNHALTED_CORE,FIXC1,2337598
-CPU_CLK_UNHALTED_REF,FIXC2,2448930
-L2_TRANS_ALL_REQUESTS,PMC0,8537
-L2_RQSTS_MISS,PMC1,2069
+CPU_CLK_UNHALTED_CORE,FIXC1,2331258
+CPU_CLK_UNHALTED_REF,FIXC2,1986820
+L2_TRANS_ALL_REQUESTS,PMC0,8102
+L2_RQSTS_MISS,PMC1,1871
 TABLE,Region GeracaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],0.0011,
+Runtime (RDTSC) [s],0.0009,
 Runtime unhalted [s],0.0011,
-Clock [MHz],2095.1342,
-CPI,0.4749,
-L2 request rate,0.0017,
+Clock [MHz],2575.4408,
+CPI,0.4736,
+L2 request rate,0.0016,
 L2 miss rate,0.0004,
-L2 miss ratio,0.2424,
+L2 miss ratio,0.2309,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000004,
+RDTSC Runtime [s],0.000003,
 call count,1,
 Event,Counter,HWThread 3
 INSTR_RETIRED_ANY,FIXC0,14883
-CPU_CLK_UNHALTED_CORE,FIXC1,14171
-CPU_CLK_UNHALTED_REF,FIXC2,14806
-L2_TRANS_ALL_REQUESTS,PMC0,2377
-L2_RQSTS_MISS,PMC1,746
+CPU_CLK_UNHALTED_CORE,FIXC1,15978
+CPU_CLK_UNHALTED_REF,FIXC2,13046
+L2_TRANS_ALL_REQUESTS,PMC0,2642
+L2_RQSTS_MISS,PMC1,662
 TABLE,Region SolucaoSistemaLinearOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
-Runtime (RDTSC) [s],3.735046e-06,
-Runtime unhalted [s],6.456276e-06,
-Clock [MHz],2100.7828,
-CPI,0.9522,
-L2 request rate,0.1597,
-L2 miss rate,0.0501,
-L2 miss ratio,0.3138,
+Runtime (RDTSC) [s],3.411050e-06,
+Runtime unhalted [s],7.279519e-06,
+Clock [MHz],2688.2200,
+CPI,1.0736,
+L2 request rate,0.1775,
+L2 miss rate,0.0445,
+L2 miss ratio,0.2506,
 STRUCT,Info,3
 CPU name:,Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz,
 CPU type:,Intel Core Broadwell processor,
-CPU clock:,2.194918496 GHz,
+CPU clock:,2.194925375 GHz,
 TABLE,Region CalculoResiduosOtim,Group 1 Raw,L2CACHE,5
 Region Info,HWThread 3,
-RDTSC Runtime [s],0.000338,
+RDTSC Runtime [s],0.000264,
 call count,1,
 Event,Counter,HWThread 3
-INSTR_RETIRED_ANY,FIXC0,1511089
-CPU_CLK_UNHALTED_CORE,FIXC1,709324
-CPU_CLK_UNHALTED_REF,FIXC2,743094
-L2_TRANS_ALL_REQUESTS,PMC0,4749
-L2_RQSTS_MISS,PMC1,1467
+INSTR_RETIRED_ANY,FIXC0,1511094
+CPU_CLK_UNHALTED_CORE,FIXC1,710252
+CPU_CLK_UNHALTED_REF,FIXC2,578666
+L2_TRANS_ALL_REQUESTS,PMC0,4320
+L2_RQSTS_MISS,PMC1,1323
 TABLE,Region CalculoResiduosOtim,Group 1 Metric,L2CACHE,7
 Metric,HWThread 3,
 Runtime (RDTSC) [s],0.0003,
 Runtime unhalted [s],0.0003,
-Clock [MHz],2095.1701,
-CPI,0.4694,
-L2 request rate,0.0031,
-L2 miss rate,0.0010,
-L2 miss ratio,0.3089,
+Clock [MHz],2694.0414,
+CPI,0.4700,
+L2 request rate,0.0029,
+L2 miss rate,0.0009,
+L2 miss ratio,0.3063,
